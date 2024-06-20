@@ -5,6 +5,7 @@ import Shop from './components/Shop/Shop'
 import productList from "./utils/data.json";
 import { type ListOfProducts } from './types';
 import './App.css'
+import Footer from './components/Footer/Footer';
 
 function App() {
   const [products] = useState<ListOfProducts>(productList);
@@ -24,6 +25,7 @@ function App() {
     <>
      <Header getSearchTerm={setSearchTerm} />
      <Shop products={filteredProducts}/>
+     <Footer />
     </>
   )
 }
