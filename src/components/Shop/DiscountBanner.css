@@ -1,0 +1,14 @@
+.discount-banner__container {
+    font-family: "GintoRounded_MediumItalic";
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 31%, rgba(6,6,101,1) 72%);
+    border-radius: 10px;
+    margin: 0 auto 1rem;
+    padding: 1.3rem;
+    width: 80%;
+    text-align: center;
+}  
+
+.discount-banner__container p {
+ color: var(--text-primary-color);
+}

@@ -1,0 +1,163 @@
+
+@font-face {
+  font-family: "GintoRounded_Medium";
+  src: url("assets/fonts/ABCGintoRounded-Medium-Trial.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "GintoRounded_MediumItalic";
+  src: url("assets/fonts/ABCGintoRounded-MediumItalic-Trial.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "GintoRounded_Light";
+  src: url("assets/fonts/ABCGintoRounded-Light-Trial.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "GintoRounded_LightItalic";
+  src: url("assets/fonts/ABCGintoRounded-LightItalic-Trial.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "GintoRounded_NordBoldItalic";
+  src: url("assets/fonts/ABCGintoRoundedNord-BoldItalic-Trial.woff2") format("woff2");
+}
+
+:root {
+  font-family: "GintoRounded_Light", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+
+  color-scheme: light dark;
+  
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --max-width: 1580px;
+  --primary-background-color:rgba(250, 250, 242, 0.87);
+  --secondary-background-color: #242424;
+  --secondary-background-color-light: #353535;
+  --secondary-background-color-lightest: #404040;
+  --info-color: #f0ad4e;
+  --text-primary-color:rgba(250, 250, 242, 0.87);
+  --text-price-color: #2031ab;
+  --text-secondary-color: #242424;
+}
+
+* {
+  margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	box-sizing: border-box;
+
+}
+
+html {
+  font-size: 16px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+body {
+  width: 100% ;
+  min-height: 100dvh;
+	line-height: 1;
+
+}
+
+ol, ul {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+h1, h2, h3, h4 {
+  text-wrap: balance;
+}
+
+h1,
+.header1 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--text-secondary-color)
+}
+
+h2,
+.header2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-secondary-color)
+}
+
+h3,
+.header3 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-secondary-color)
+}
+
+h4,
+.header4 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-secondary-color)
+}
+
+h5,
+.header5 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-secondary-color)
+}
+
+h6,
+.header6 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-secondary-color)
+}
+
+p {
+    font-size: 1rem;
+    color: var(--text-secondary-color);
+    text-wrap: pretty;
+}
+
+small {
+    font-size: .8rem
+}
+
+b {
+    font-weight: 700
+}
+
+i {
+    font-style: italic
+}
+
+
+
+ul.decorated li:before {
+    color: var(--text-secondary-color);
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-secondary-color);
+}
+
+a:hover {
+    color: var(--info-color);
+    transition: all .2s linear 0s
+}
+
+
+
+

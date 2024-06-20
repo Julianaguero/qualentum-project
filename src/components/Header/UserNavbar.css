@@ -1,0 +1,22 @@
+.header__nav-icons {
+    width: 1.4rem;
+    height: 1.4rem;
+}
+
+.header__nav-list {
+    display: flex;
+    gap: 1rem;
+}
+
+.header__nav-link {
+    color: var(--text-primary-color);
+}
+
+.header__nav-item:active {
+    transform: scale(.95);
+}
+
+.header__nav-icons {
+    width: 1.4rem;
+    height: 1.4rem;
+}
