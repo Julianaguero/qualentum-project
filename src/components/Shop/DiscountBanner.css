@@ -1,7 +1,7 @@
 .discount-banner__container {
     font-family: "GintoRounded_MediumItalic";
-    background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(2,0,36,1) 31%, rgba(6,6,101,1) 72%);
+    background: rgb(131,58,180);
+    background: linear-gradient(164deg, rgba(131,58,180,1) 40%, rgba(253,29,29,1) 92%, rgba(252,176,69,1) 100%);
     border-radius: 10px;
     margin: 0 auto 1rem;
     padding: 1.3rem;
@@ -11,4 +11,9 @@
 
 .discount-banner__container p {
  color: var(--text-primary-color);
+}
+
+.discount-banner__container.dark {
+    background: rgb(63,94,251);
+    background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
 }

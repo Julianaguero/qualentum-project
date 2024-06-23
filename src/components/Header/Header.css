@@ -23,6 +23,11 @@ body {
   color: var(--text-primary-color);
 }
 
+#header a:hover {
+  color: var(--info-color);
+  transition: all .2s linear 0s
+}
+
 .header__logo-container {
   width: 10rem;
 }

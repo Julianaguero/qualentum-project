@@ -4,25 +4,30 @@
     border: 1px solid black;
     border-radius: 15px;
     transition: all 150 ease-in-out;
+    overflow: hidden;
+    
 }
 
 #card-product:active {
     transform: scale(.98);
 }
 
-.card__img-container {
-    border-radius: 15px 15px 0 0;
-    width: 100%;
-    height: 250px;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: start;
+#card-product .dark {
+    background: var(--secondary-background-color-contrast);
 }
 
 #card-product:hover img {
     transform: scale(1.04);
-    
+}
+
+.card__img-container {
+    border-radius: 15px 15px 0 0;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: start;
 }
 
 img {   
@@ -30,6 +35,8 @@ img {
     height: auto;
     object-fit: cover;
     transition: all 150ms ease-in;
+    aspect-ratio: 10/7;
+
 }
 
 
@@ -42,6 +49,8 @@ img {
     padding: 1rem;
     gap: 1rem;
 }
+
+
 
 .card-header {
     font-family: "GintoRounded_NordBoldItalic";

@@ -3,6 +3,7 @@ import MainNavbar from "./MainNavbar";
 import UserNavbar from "./UserNavbar";
 import useToggleNavbar from "../../hooks/useToggleNabar";
 import "./Header.css";
+import { useThemeContext } from "../../hooks/useThemeContext";
 
 // TODO: intentar evitar el prop-drilling de getSearchTerm
 
@@ -13,13 +14,13 @@ interface HeaderProps  {
 
 
 export default function Header({ getSearchTerm } : HeaderProps ) {
+  const {theme} = useThemeContext();
 
   const { clicked, toggleClicked } = useToggleNavbar();
 
 
-
   return (
-    <header id="header" className="header">
+    <header id="header" className={`header ${theme}`}>
       <div className="header__logo-container">
         <h1 className="header__title">MI TIENDA</h1>
       </div>
