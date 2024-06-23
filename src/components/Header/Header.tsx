@@ -1,8 +1,8 @@
-import { useState } from "react";
-import "./Header.css";
 import BurguerButton from "./BurguerButton";
 import MainNavbar from "./MainNavbar";
 import UserNavbar from "./UserNavbar";
+import useToggleNavbar from "../../hooks/useToggleNabar";
+import "./Header.css";
 
 // TODO: intentar evitar el prop-drilling de getSearchTerm
 
@@ -10,12 +10,11 @@ interface HeaderProps  {
   getSearchTerm:  (value: string) => void;
 }
 
+
+
 export default function Header({ getSearchTerm } : HeaderProps ) {
 
-  const [clicked, setClicked ] = useState(false);
-  const toggleClicked = () => {
-    setClicked(!clicked)
-  }
+  const { clicked, toggleClicked } = useToggleNavbar();
 
 
 

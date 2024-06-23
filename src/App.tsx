@@ -6,19 +6,12 @@ import productList from "./utils/data.json";
 import { type ListOfProducts } from './types';
 import './App.css'
 import Footer from './components/Footer/Footer';
+import useSearch from './hooks/useSearch';
 
 function App() {
   const [products] = useState<ListOfProducts>(productList);
 
-  const [ searchTerm, setSearchTerm ] = useState("")
-
-  const filterProducts = (products: ListOfProducts) => {
-    return products.filter(product => {
-      return product.title.toLowerCase().includes(searchTerm)
-    })
-  }
-
-  const filteredProducts = filterProducts(products);
+ const {filteredProducts, setSearchTerm } = useSearch({products})
  
 
   return (
