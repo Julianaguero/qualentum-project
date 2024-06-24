@@ -1,15 +1,5 @@
 import { createContext, useState } from "react";
-
-type ThemeContextProviderProps = {
-    children: React.ReactNode;
-}
-
-type ThemeProps = "dark" | "light"
-
-type ThemeContextProps = {
-    theme: ThemeProps;
-    toggleTheme: () => void;
-}
+import { type ThemeContextProviderProps, type ThemeContextProps, type ThemeProps } from "../types";
 
 
 export const ThemeContext  = createContext<ThemeContextProps | null>(null);

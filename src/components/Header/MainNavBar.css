@@ -11,7 +11,7 @@
 .header__input {
     width: 100%;
     padding: 0.5rem 1.2rem;
-    border-radius: 25px;
+    border-radius: var(--border-radius-xl);
 }
 
 .header__nav-link_main {

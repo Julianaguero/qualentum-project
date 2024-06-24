@@ -12,3 +12,15 @@ export type ProductProps = {
 }
 
 export type ListOfProducts = ProductProps[];
+
+//ThemeContext Props
+export type ThemeContextProviderProps = {
+  children: React.ReactNode;
+}
+
+export type ThemeProps = "dark" | "light"
+
+export type ThemeContextProps = {
+  theme: ThemeProps;
+  toggleTheme: () => void;
+}
