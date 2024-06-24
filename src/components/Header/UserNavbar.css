@@ -9,6 +9,7 @@
 }
 
 .header__nav-link {
+    position: relative;
     color: var(--text-primary-color);
 }
 
@@ -19,4 +20,23 @@
 .header__nav-icons {
     width: 1.4rem;
     height: 1.4rem;
+}
+
+.cart__counter {
+    position: absolute;
+    left: -0.2rem;
+    bottom: -0.2rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--button-background-color);
+    border-radius: var(--border-radius-xl);
+    font-size: 0.9rem
+}
+
+.header__nav-link:hover .cart__counter {
+    color: var(--text-primary-color);
+    background-color: var(--button-background-color-hover);
 }

@@ -1,11 +1,18 @@
+import {useCartContext, useThemeContext} from "../../hooks/";
+
 import { LuShoppingCart, LuHeart, LuUser2 } from "react-icons/lu";
 import { RiContrast2Fill, RiContrast2Line } from "react-icons/ri";
 
 import "./UserNavbar.css";
-import { useThemeContext } from "../../hooks/useThemeContext";
+import { sumItems } from "../../utils";
 
 export default function UserNavbar() {
   const { theme, toggleTheme } = useThemeContext();
+  const { cart } = useCartContext();
+  console.log(cart);
+
+
+
 
   return (
     <nav className="header__nav">
@@ -49,6 +56,7 @@ export default function UserNavbar() {
             aria-label="Link to user login or preferences"
           >
             <LuUser2 className="header__nav-icons" aria-disabled />
+            {sumItems(cart) > 0 && <span className="cart__counter">{sumItems(cart)}</span>}
           </a>
         </li>
       </ul>
