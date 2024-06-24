@@ -48,20 +48,22 @@
   --secondary-background-color-lightest: #535151;
   --info-color: #f0ad4e;
   --text-primary-color:rgb(250, 250, 242);
-  --text-price-color: #2031ab;
+  --text-price-color: #3147ea;
   --text-secondary-color: #242424;
-  --button-background-color: #f0ad4e;
-  --button-background-color-hover: #dd681a; 
+  --button-background-color: #3147ea;
+  --button-background-color-hover:  #2031ab; 
 }
 
 .dark {
   --text-primary-color: #ffffff;
   --text-secondary-color: rgba(250, 250, 242, 0.87);
-  --text-price-color: #f09064;
+  --text-price-color: #f98e36;
   --secondary-background-color: #242424;
   --secondary-background-color-light: #1F1F1F;
   --secondary-background-color-lightest: #353535;
   --secondary-background-color-contrast: #2C2C2C;
+  --button-background-color: #f98e36;
+  --button-background-color-hover:  #f5773d; 
 
   background-color: #353535;
 }
