@@ -1,0 +1,26 @@
+
+.custom-button {
+    cursor: pointer;
+    background-color: var(--button-background-color);
+    color: var(--text-primary-color);
+    padding: 0.8rem 1.1rem;
+    border-radius: var(--border-radius-xs);
+    transition: all 100ms ease-out;
+}
+
+.custom-button:hover {
+    background-color: var(--button-background-color-hover);
+}
+
+.custom-button:active {
+    transform: scale(0.98);
+}
+
+.custom-button:disabled {
+    background-color: gray;
+    cursor: default;
+}
+
+.custom-button:disabled:hover {
+    background-color: gray;
+}
