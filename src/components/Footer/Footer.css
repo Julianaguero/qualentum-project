@@ -58,3 +58,11 @@
 .footer__copyright {
     text-align: center;
 }
+
+@media (max-width: 768px) {
+    .footer__links-wrapper {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}

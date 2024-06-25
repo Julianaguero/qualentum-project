@@ -59,7 +59,7 @@ body {
   display: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px)  {
   .header__logo-container {
     width: 15rem;
   }

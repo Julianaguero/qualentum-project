@@ -34,7 +34,6 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
   --max-width: 1580px;
   --border-radius-xs: 5px;
   --border-radius-s: 10px;
@@ -91,7 +90,7 @@ html {
 
 body {
   width: 100% ;
-  min-height: 100dvh;
+  min-height: 100%;
 	line-height: 1;
   background-color: var(--primary-background-color);
 }
