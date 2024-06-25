@@ -1,12 +1,11 @@
 import { useState } from "react";
 
-const useToggleNavbar = () => {
+export default function useToggleNavbar() {
   const [clicked, setClicked] = useState(false);
   const toggleClicked = () => {
     setClicked(!clicked);
   };
 
   return { clicked, toggleClicked };
-};
+}
 
-export default useToggleNavbar;
