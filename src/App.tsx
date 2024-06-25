@@ -1,29 +1,36 @@
-import { useState } from 'react'
-import Header from './components/Header/Header'
-import Shop from './components/Shop/Shop'
+import { useState } from "react";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import Shop from "./pages/Shop";
+import ShoppingCart from "./pages/ShoppingCart";
+import { useThemeContext, useSearch } from "./hooks";
 
 import productList from "./utils/data.json";
-import { type ListOfProducts } from './types';
-import './App.css'
-import Footer from './components/Footer/Footer';
-import useSearch from './hooks/useSearch';
-import { useThemeContext } from './hooks/useThemeContext';
+
+import { type ListOfProducts } from "./types";
+import "./App.css";
 
 function App() {
+  const { theme } = useThemeContext();
   const [products] = useState<ListOfProducts>(productList);
+  const { filteredProducts, setSearchTerm } = useSearch({ products });
 
- const {filteredProducts, setSearchTerm } = useSearch({products})
+  const [ activePage, setActivePage ] = useState<"shop" | "cart">("cart")
 
- const { theme } = useThemeContext();
- 
-console.log(theme)
+  const toggleActivePage = (value: "cart" | "shop") => {
+    return setActivePage(value);
+  }
+
   return (
     <>
-     <Header getSearchTerm={setSearchTerm} />
-     <Shop products={filteredProducts}/>
-     <Footer />
+      <Header getSearchTerm={setSearchTerm} theme={theme} handleActivePage={toggleActivePage}/>
+      {activePage === "shop"
+        ? <Shop products={filteredProducts} theme={theme} />
+        : <ShoppingCart theme={theme}/>}
+     
+      <Footer />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

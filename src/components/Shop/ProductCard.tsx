@@ -1,6 +1,6 @@
 import "./ProductCard.css";
 import { type ProductProps } from "../../types";
-import { priceToLocaleString } from "../../utils";
+import { priceToLocaleString } from "../../utils/shopUtils";
 import { useThemeContext } from "../../hooks/useThemeContext";
 import CustomButton from "../Buttons/CustomButton";
 import useCartContext from "../../hooks/useCartContext";

@@ -26,9 +26,10 @@ const ShoppingCart: React.FC<Props> = ({ theme }) => {
           )}
           {cart.length > 0 && <CartItemsList cart={cart}/>}
         </div>
-        <span className="shopping-cart__total-price">
+        {cart.length > 0 && <span className="shopping-cart__total-price">
           Total a pagar: {priceToLocaleString(calcTotalPrice(cart))}{" "}
-        </span>
+        </span>}
+        
       </section>
     </main>
   );

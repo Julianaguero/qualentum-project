@@ -43,9 +43,11 @@
   --border-radius-xl: 25px;
 
   --primary-background-color:rgba(255, 255, 255, 0.745);
+  --primary-background-color-dark:rgb(229 231 235);
   --secondary-background-color: #242424;
   --secondary-background-color-light: #353535;
   --secondary-background-color-lightest: #535151;
+  --contrast-background-color:  rgb(156 163 175);
   --info-color: #f0ad4e;
   --text-primary-color:rgb(250, 250, 242);
   --text-price-color: #3147ea;
@@ -58,14 +60,16 @@
   --text-primary-color: #ffffff;
   --text-secondary-color: rgba(250, 250, 242, 0.87);
   --text-price-color: #f98e36;
+  --primary-background-color-dark:rgb(109, 112, 116);
   --secondary-background-color: #242424;
   --secondary-background-color-light: #1F1F1F;
   --secondary-background-color-lightest: #353535;
   --secondary-background-color-contrast: #2C2C2C;
+  --contrast-background-color: #876767;
   --button-background-color: #f98e36;
   --button-background-color-hover:  #f5773d; 
 
-  background-color: #353535;
+  background-color: var(--secondary-background-color-lightest);
 }
 
 * {

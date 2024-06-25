@@ -4,13 +4,15 @@ import { LuShoppingCart, LuHeart, LuUser2 } from "react-icons/lu";
 import { RiContrast2Fill, RiContrast2Line } from "react-icons/ri";
 
 import "./UserNavbar.css";
-import { sumItems } from "../../utils";
+import { sumItems } from "../../utils/shopUtils";
 
-export default function UserNavbar() {
+interface Props {
+  handleToggleActivePage: (value: "cart" | "shop") => void;
+}
+
+export default function UserNavbar({handleToggleActivePage} : Props ) {
   const { theme, toggleTheme } = useThemeContext();
   const { cart } = useCartContext();
-  console.log(cart);
-
 
 
 
@@ -35,9 +37,9 @@ export default function UserNavbar() {
           <a
             href="#"
             className="header__nav-link"
-            aria-label="Link to shopping cart"
+            aria-label="Link to user login or preferences"
           >
-            <LuShoppingCart className="header__nav-icons" aria-disabled />
+            <LuUser2 className="header__nav-icons" aria-disabled />
           </a>
         </li>
         <li className="header__nav-item">
@@ -53,9 +55,11 @@ export default function UserNavbar() {
           <a
             href="#"
             className="header__nav-link"
-            aria-label="Link to user login or preferences"
+             aria-label="Link to shopping cart"
+            onClick={() => handleToggleActivePage("cart")}
           >
-            <LuUser2 className="header__nav-icons" aria-disabled />
+            <LuShoppingCart className="header__nav-icons" aria-disabled />
+
             {sumItems(cart) > 0 && <span className="cart__counter">{sumItems(cart)}</span>}
           </a>
         </li>
