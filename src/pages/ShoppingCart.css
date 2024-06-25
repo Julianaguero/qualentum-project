@@ -1,0 +1,100 @@
+#shopping-cart {
+    margin: 5rem auto 0;
+    padding: 2rem;
+    height: 100%;
+}
+
+.shopping-cart__list-container {
+    max-width: 950px;
+    margin: 0 auto;
+}
+
+.shopping-cart__header {
+    background-color: var(--primary-background-color-dark);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.shopping-cart__content {
+    color: var(--text-secondary-color)
+}
+
+.shopping-cart__title {
+    font-size: 1.25rem;
+    font-family: "GintoRounded_MediumItalic";
+    line-height: 1.75rem;
+}
+
+.shopping-cart__item {
+    display: flex;
+    border-collapse: collapse;
+    border-bottom: 0.5px solid var(--contrast-background-color);
+}
+
+.shopping-cart__item:first-child {
+    border-top: 1px solid var(--contrast-background-color);
+}
+
+.shopping-cart__item:last-child {
+    border-bottom: 1px solid var(--contrast-background-color);
+
+}
+
+.shopping-cart__item-image-container {
+    position: relative;
+    width: 8rem;
+    height: 8rem;
+    padding: 0.5rem;
+}
+
+.shopping-cart__item-image {
+    aspect-ratio: 2/2;
+    width: 100%;
+    height: auto;
+}
+
+.shopping-cart__item-details {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    align-items: start;
+    justify-content: center;
+    
+}
+
+.shopping-cart__item-title{
+    font-family: "GintoRounded_Medium";
+    margin-bottom: 0.8rem;
+}
+
+.shopping-cart__item-price{
+    margin-bottom: 0.3rem;
+}
+
+.shopping-cart__item-price span,.shopping-cart__item-total-price span {
+    font-family: "GintoRounded_LightItalic";
+}
+
+.shopping-cart__cart-counter {
+        position: absolute;
+        right: -0.5rem;
+        top: 0.2rem;
+        width: 1.5rem;
+        height: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-primary-color);
+        background-color: var(--button-background-color);
+        border-radius: var(--border-radius-xl);
+        font-size: 1rem;
+}
+
+.shopping-cart__total-price {
+    display: block;
+    color: var(--text-secondary-color);
+    font-family: "GintoRounded_Medium";
+    font-size: 1.3rem;
+    text-align: right;
+    margin: 1.5rem 1rem
+}
