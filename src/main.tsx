@@ -4,13 +4,16 @@ import App from "./App.tsx";
 import ThemeContextProvider from "./context/ThemeContext.tsx";
 import "./index.css";
 import CartContextProvider from "./context/CartContext.tsx";
+import UserContextProvider from "./context/UserContext.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ThemeContextProvider>
-      <CartContextProvider>
-        <App />
-      </CartContextProvider>
+      <UserContextProvider>
+        <CartContextProvider>
+          <App />
+        </CartContextProvider>
+      </UserContextProvider>
     </ThemeContextProvider>
   </React.StrictMode>
 );

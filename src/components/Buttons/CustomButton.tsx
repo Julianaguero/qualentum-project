@@ -1,10 +1,10 @@
 import "./CustomButton.css"
 
-interface CustomButtonProps extends React.HTMLAttributes<HTMLButtonElement>{
+interface CustomButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>{
     text: string,
     className?: string,
     disabled?: boolean,
-    action: () => void,
+    action?: () => void,
 }
 
 const CustomButton : React.FC<CustomButtonProps> = 

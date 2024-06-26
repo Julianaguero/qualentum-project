@@ -45,12 +45,13 @@
   --primary-background-color-dark:rgb(229 231 235);
   --secondary-background-color: #242424;
   --secondary-background-color-light: #353535;
-  --secondary-background-color-lightest: #535151;
+  --secondary-background-color-lightest: #747474;
   --contrast-background-color:  rgb(156 163 175);
   --info-color: #f0ad4e;
   --text-primary-color:rgb(250, 250, 242);
   --text-price-color: #3147ea;
   --text-secondary-color: #242424;
+  --text-warning-color: #ad1010;
   --button-background-color: #3147ea;
   --button-background-color-hover:  #2031ab; 
 }

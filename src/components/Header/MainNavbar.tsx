@@ -1,5 +1,5 @@
-import React from "react";
-import { navLinks } from "../../utils/data";
+import React, { useState } from "react";
+import { navLinks } from "../../utils/constants";
 import "./MainNavBar.css";
 
 interface Props {
@@ -9,10 +9,13 @@ interface Props {
 
 const MainNavbar: React.FC<Props> = ({ toggleClicked, getSearchTerm }) => {
 
+  const [searchTerm, setSearchTerm] = useState("")
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newSearch = event.target.value;
     if (newSearch === " ") return;
     getSearchTerm(newSearch);
+    setSearchTerm(newSearch)
   };
 
   return (
@@ -37,9 +40,8 @@ const MainNavbar: React.FC<Props> = ({ toggleClicked, getSearchTerm }) => {
       <div className="header__input-container">
         <input
           type="text"
-          name=""
-          id=""
           className="header__input"
+          value={searchTerm}
           placeholder="Buscar productos..."
           onChange={handleChange}
         />

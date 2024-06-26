@@ -9,13 +9,14 @@ import productList from "./utils/data.json";
 
 import { type ListOfProducts } from "./types";
 import "./App.css";
+import LoginForm from "./components/Login/LoginForm";
 
 function App() {
   const { theme } = useThemeContext();
   const [products] = useState<ListOfProducts>(productList);
   const { filteredProducts, setSearchTerm } = useSearch({ products });
 
-  const [ activePage, setActivePage ] = useState<"shop" | "cart">("cart")
+  const [ activePage, setActivePage ] = useState<"shop" | "cart">("shop")
 
   const toggleActivePage = (value: "cart" | "shop") => {
     return setActivePage(value);
@@ -27,7 +28,7 @@ function App() {
       {activePage === "shop"
         ? <Shop products={filteredProducts} theme={theme} />
         : <ShoppingCart theme={theme}/>}
-     
+        <LoginForm theme={theme}/>
       <Footer />
     </>
   );

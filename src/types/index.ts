@@ -24,3 +24,22 @@ export type ThemeContextProps = {
   theme: ThemeProps;
   toggleTheme: () => void;
 }
+
+
+// UserContextProps
+export interface UserDataProps {
+  username: string,
+  email: string,
+}
+
+export type UserContextProps = {
+  userData: UserDataProps,
+  isLogged: boolean,
+  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
+  handleLogin: (event: React.FormEvent<HTMLFormElement>) => void,
+  handleLogout: () => void,
+}
+
+export type UserContextProviderProps = {
+  children: React.ReactNode;
+}
