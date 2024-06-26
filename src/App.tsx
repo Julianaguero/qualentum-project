@@ -28,7 +28,7 @@ function App() {
       {activePage === "shop"
         ? <Shop products={filteredProducts} theme={theme} />
         : <ShoppingCart theme={theme}/>}
-        <LoginForm theme={theme}/>
+        <LoginForm />
       <Footer />
     </>
   );
