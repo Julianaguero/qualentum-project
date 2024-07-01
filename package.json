@@ -2,6 +2,7 @@
   "name": "ecommerce-lab1",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://julianaguero.github.io/qualentum-project/",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -18,6 +19,7 @@
     "react-router-dom": "^6.24.0"
   },
   "devDependencies": {
+    "@types/node": "^20.14.9",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
