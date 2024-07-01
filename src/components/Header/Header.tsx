@@ -1,6 +1,4 @@
-import BurguerButton from "./BurguerButton";
-import MainNavbar from "./MainNavbar";
-import UserNavbar from "./UserNavbar";
+import {BurgerButton, MainNavbar, UserNavbar} from "./index";
 import useToggleNavbar from "../../hooks/useToggleNabar";
 import "./Header.css";
 import { ThemeProps } from "../../types";
@@ -10,13 +8,11 @@ import { ThemeProps } from "../../types";
 interface HeaderProps {
   getSearchTerm: (value: string) => void;
   theme: ThemeProps;
-  handleActivePage: (value: "cart" | "shop") => void;
 }
 
 export default function Header({
   getSearchTerm,
   theme,
-  handleActivePage,
 }: HeaderProps) {
   const { clicked, toggleClicked } = useToggleNavbar();
 
@@ -25,7 +21,7 @@ export default function Header({
       <div
         className="header__logo-container"
       >
-        <a href="#" onClick={() => handleActivePage("shop")}>
+        <a href="#">
           <h1 className="header__title">MI TIENDA</h1>
         </a>
       </div>
@@ -36,10 +32,10 @@ export default function Header({
             getSearchTerm={getSearchTerm}
           />
         </div>
-        <UserNavbar handleToggleActivePage={handleActivePage} />
+        <UserNavbar/>
       </div>
       <div className="burger__button">
-        <BurguerButton clicked={clicked} toggleClicked={toggleClicked} />
+        <BurgerButton clicked={clicked} toggleClicked={toggleClicked} />
       </div>
     </header>
   );

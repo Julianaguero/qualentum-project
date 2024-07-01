@@ -6,11 +6,9 @@ import { RiContrast2Fill, RiContrast2Line } from "react-icons/ri";
 import "./UserNavbar.css";
 import { sumItems } from "../../utils/shopUtils";
 
-interface Props {
-  handleToggleActivePage: (value: "cart" | "shop") => void;
-}
 
-export default function UserNavbar({handleToggleActivePage} : Props ) {
+
+export default function UserNavbar() {
   const { theme, toggleTheme } = useThemeContext();
   const { cart } = useCartContext();
 
@@ -56,7 +54,6 @@ export default function UserNavbar({handleToggleActivePage} : Props ) {
             href="#"
             className="header__nav-link"
              aria-label="Link to shopping cart"
-            onClick={() => handleToggleActivePage("cart")}
           >
             <LuShoppingCart className="header__nav-icons" aria-disabled />
 

@@ -6,7 +6,7 @@ interface Props {
 }
 
 
-const BurguerButton : React.FC<Props> = ({ toggleClicked, clicked }) => {
+const BurgerButton : React.FC<Props> = ({ toggleClicked, clicked }) => {
   return (
     <div onClick={toggleClicked} className={`icon nav-icon-5 ${clicked ? "open" : ""}`}>
       <span></span>
@@ -16,4 +16,4 @@ const BurguerButton : React.FC<Props> = ({ toggleClicked, clicked }) => {
   );
 };
 
-export default BurguerButton;
+export default BurgerButton;

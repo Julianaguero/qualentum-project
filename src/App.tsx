@@ -16,18 +16,13 @@ function App() {
   const [products] = useState<ListOfProducts>(productList);
   const { filteredProducts, setSearchTerm } = useSearch({ products });
 
-  const [ activePage, setActivePage ] = useState<"shop" | "cart">("shop")
-
-  const toggleActivePage = (value: "cart" | "shop") => {
-    return setActivePage(value);
-  }
-
+  
   return (
     <>
-      <Header getSearchTerm={setSearchTerm} theme={theme} handleActivePage={toggleActivePage}/>
-      {activePage === "shop"
-        ? <Shop products={filteredProducts} theme={theme} />
-        : <ShoppingCart theme={theme}/>}
+      <Header getSearchTerm={setSearchTerm} theme={theme} />
+     
+     <Shop products={filteredProducts} theme={theme} />
+     <ShoppingCart theme={theme}/>
         <LoginForm />
       <Footer />
     </>

@@ -8,8 +8,8 @@ export default function useSearch({ products }: {products: ListOfProducts}) {
   const filterProducts = (products: ListOfProducts) => {
     return products?.filter((product) => {
       return product.title
-        .toLowerCase()
-        .includes(searchTerm.trim().toLowerCase());
+        .toLocaleLowerCase()
+        .includes(searchTerm.trim().toLocaleLowerCase());
     });
   };
 
