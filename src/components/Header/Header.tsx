@@ -2,6 +2,7 @@ import {BurgerButton, MainNavbar, UserNavbar} from "./index";
 import useToggleNavbar from "../../hooks/useToggleNabar";
 import "./Header.css";
 import { useSearch, useThemeContext } from "../../hooks";
+import { Link } from "react-router-dom";
 
 // TODO: intentar evitar el prop-drilling de getSearchTerm
 
@@ -17,9 +18,9 @@ export default function Header() {
       <div
         className="header__logo-container"
       >
-        <a href="#">
+        <Link to="/">
           <h1 className="header__title">MI TIENDA</h1>
-        </a>
+        </Link>
       </div>
       <div className="header__nav-container">
         <div className={`header__nav-section_main  ${clicked ? "active" : ""}`}>

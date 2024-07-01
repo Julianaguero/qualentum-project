@@ -30,13 +30,12 @@
     align-items: start;
 }
 
-img {   
+.card__img-container img {   
     max-width: 100%;
     height: auto;
     object-fit: cover;
     transition: all 150ms ease-in;
     aspect-ratio: 10/7;
-
 }
 
 

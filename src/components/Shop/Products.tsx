@@ -11,7 +11,7 @@ const Products : React.FC<Props> = ({products}) => {
 
   return (
     <section >
-      <ul className="product-container">
+      <ul className="products-container">
         {products.map((product: ProductProps) => (
           <li key={product.id}>
             <ProductCard product={product} />

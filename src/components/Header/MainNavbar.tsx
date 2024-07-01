@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { navLinks } from "../../utils/constants";
 import "./MainNavBar.css";
+import { Link } from "react-router-dom";
 
 interface Props {
   toggleClicked: () => void;
@@ -25,13 +26,13 @@ const MainNavbar: React.FC<Props> = ({ toggleClicked, getSearchTerm }) => {
           {navLinks.map(({name, href}) => {
             return (
               <li className="header__nav-item_main" key={name}>
-                <a
-                  href={href}
+                <Link
+                  to={href}
                   className="header__nav-link_main"
                   onClick={toggleClicked}
                 >
                   {name}
-                </a>
+                </Link>
               </li>
             );
           })}
