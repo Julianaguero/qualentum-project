@@ -1,4 +1,4 @@
-import "./BurguerButton.css";
+import "./BurgerButton.css";
 
 interface Props {
   clicked: boolean;

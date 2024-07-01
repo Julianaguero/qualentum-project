@@ -1,8 +1,12 @@
 import { useState } from "react";
 import { ListOfProducts } from "../types";
+import productList from "../utils/data.json";
 
 
-export default function useSearch({ products }: {products: ListOfProducts}) {
+
+export default function useSearch() {
+  const [products] = useState<ListOfProducts>(productList);
+
   const [searchTerm, setSearchTerm] = useState("");
 
   const filterProducts = (products: ListOfProducts) => {

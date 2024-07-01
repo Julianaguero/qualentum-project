@@ -1,20 +1,16 @@
 import {BurgerButton, MainNavbar, UserNavbar} from "./index";
 import useToggleNavbar from "../../hooks/useToggleNabar";
 import "./Header.css";
-import { ThemeProps } from "../../types";
+import { useSearch, useThemeContext } from "../../hooks";
 
 // TODO: intentar evitar el prop-drilling de getSearchTerm
 
-interface HeaderProps {
-  getSearchTerm: (value: string) => void;
-  theme: ThemeProps;
-}
 
-export default function Header({
-  getSearchTerm,
-  theme,
-}: HeaderProps) {
+export default function Header() {
+  const { theme } = useThemeContext();
+  const {setSearchTerm} = useSearch()
   const { clicked, toggleClicked } = useToggleNavbar();
+
 
   return (
     <header id="header" className={`header ${theme}`}>
@@ -29,7 +25,7 @@ export default function Header({
         <div className={`header__nav-section_main  ${clicked ? "active" : ""}`}>
           <MainNavbar
             toggleClicked={toggleClicked}
-            getSearchTerm={getSearchTerm}
+            getSearchTerm={setSearchTerm}
           />
         </div>
         <UserNavbar/>

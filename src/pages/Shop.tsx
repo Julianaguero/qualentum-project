@@ -1,20 +1,19 @@
 import Products from "../components/Shop/Products"
 import DiscountBanner from "../components/Shop/DiscountBanner"
-import { ThemeProps, type ListOfProducts } from "../types";
 import "./Shop.css"
+import { useSearch, useThemeContext } from "../hooks";
 
-interface ShopProps {
-  products: ListOfProducts;
-  theme: ThemeProps;
-}
 
-export default function Shop({products, theme} : ShopProps) {
+export default function Shop() {
+  const { theme } = useThemeContext();
+
+  const { filteredProducts } = useSearch();
 
     
   return (
     <main id="shop" className={`${theme}`}>
         <DiscountBanner />
-        <Products products={products} />
+        <Products products={filteredProducts} />
 
     </main>
   )

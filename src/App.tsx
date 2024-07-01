@@ -1,29 +1,25 @@
-import { useState } from "react";
 import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
+import LoginForm from "./components/Login/LoginForm";
 import Shop from "./pages/Shop";
 import ShoppingCart from "./pages/ShoppingCart";
-import { useThemeContext, useSearch } from "./hooks";
+import Footer from "./components/Footer/Footer";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import productList from "./utils/data.json";
-
-import { type ListOfProducts } from "./types";
 import "./App.css";
-import LoginForm from "./components/Login/LoginForm";
 
 function App() {
-  const { theme } = useThemeContext();
-  const [products] = useState<ListOfProducts>(productList);
-  const { filteredProducts, setSearchTerm } = useSearch({ products });
+ 
 
-  
   return (
     <>
-      <Header getSearchTerm={setSearchTerm} theme={theme} />
-     
-     <Shop products={filteredProducts} theme={theme} />
-     <ShoppingCart theme={theme}/>
+      <Header />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Shop />}/>
+        </Routes>
+        <ShoppingCart />
         <LoginForm />
+      </BrowserRouter>
       <Footer />
     </>
   );

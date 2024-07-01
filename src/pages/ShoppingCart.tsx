@@ -1,15 +1,13 @@
 import CartItemsList from "../components/ShoppingCart/CartItemsList";
-import { useCartContext } from "../hooks";
-import { ThemeProps } from "../types";
+import { useCartContext, useThemeContext } from "../hooks";
 import { calcTotalPrice, priceToLocaleString, sumItems } from "../utils/shopUtils";
 
 import "./ShoppingCart.css";
 
-interface Props {
-  theme: ThemeProps;
-}
 
-const ShoppingCart: React.FC<Props> = ({ theme }) => {
+
+const ShoppingCart: React.FC = () => {
+  const { theme } = useThemeContext();
   const { cart } = useCartContext();
 
   return (
