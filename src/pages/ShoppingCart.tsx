@@ -14,7 +14,7 @@ const ShoppingCart: React.FC = () => {
     <main id="shopping-cart" className={`shopping-cart ${theme}`}>
       <section className="shopping-cart__list-container">
         <header className="shopping-cart__header">
-          <h3 className="shopping-cart__title">YOUR CART ( {sumItems(cart)} )</h3>
+          <h3 className="shopping-cart__title">TU CARRITO ( {sumItems(cart)} )</h3>
         </header>
         <div className="shopping-cart__content">
           {cart.length === 0 && (
