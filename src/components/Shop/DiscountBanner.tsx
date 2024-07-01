@@ -1,5 +1,5 @@
 import { useThemeContext } from '../../hooks/'
-import useUserContext from '../../hooks/useUserContext'
+import useUserContext from '../../hooks/useAuthContext'
 import './DiscountBanner.css'
 
 export default function DiscountBanner() {

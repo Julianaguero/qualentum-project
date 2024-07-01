@@ -1,12 +1,12 @@
 import { createContext, useEffect, useRef, useState } from "react"
 import { useLocalStorage } from "../hooks";
-import { UserContextProps, UserContextProviderProps, UserDataProps } from "../types";
+import { type AuthContextProps, type AuthContextProviderProps, type UserDataProps } from "../types";
 
 
 
-export const UserContext = createContext<UserContextProps | undefined>(undefined)
+export const AuthContext = createContext<AuthContextProps | undefined>(undefined)
 
-export default function UserContextProvider({children}: UserContextProviderProps) {
+export default function AuthContextProvider({children}: AuthContextProviderProps) {
   const { setItem, getItem, removeItem } = useLocalStorage("userData");
   const getItemRef = useRef(getItem);
   
@@ -51,6 +51,6 @@ export default function UserContextProvider({children}: UserContextProviderProps
 
     
   return (
-    <UserContext.Provider value={{userData, isLogged, handleChange, handleLogout, handleLogin  }}>{children}</UserContext.Provider>
+    <AuthContext.Provider value={{userData, isLogged, handleChange, handleLogout, handleLogin  }}>{children}</AuthContext.Provider>
   )
 }

@@ -32,7 +32,7 @@ export interface UserDataProps {
   email: string,
 }
 
-export type UserContextProps = {
+export type AuthContextProps = {
   userData: UserDataProps,
   isLogged: boolean,
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
@@ -40,6 +40,6 @@ export type UserContextProps = {
   handleLogout: () => void,
 }
 
-export type UserContextProviderProps = {
+export type AuthContextProviderProps = {
   children: React.ReactNode;
 }
