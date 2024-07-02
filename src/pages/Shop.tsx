@@ -6,7 +6,6 @@ import { useSearch, useThemeContext } from "../hooks";
 
 export default function Shop() {
   const { theme } = useThemeContext();
-
   const { filteredProducts } = useSearch();
 
     
@@ -14,7 +13,6 @@ export default function Shop() {
     <main id="shop" className={`${theme}`}>
         <DiscountBanner />
         <Products products={filteredProducts} />
-
     </main>
   )
 }

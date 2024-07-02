@@ -2,8 +2,6 @@ import { createContext, useEffect, useRef, useState } from "react"
 import { useLocalStorage } from "../hooks";
 import { type AuthContextProps, type AuthContextProviderProps, type UserDataProps } from "../types";
 
-
-
 export const AuthContext = createContext<AuthContextProps | undefined>(undefined)
 
 export default function AuthContextProvider({children}: AuthContextProviderProps) {
@@ -15,7 +13,6 @@ export default function AuthContextProvider({children}: AuthContextProviderProps
     username: "",
     email: "",
   });
-  
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
