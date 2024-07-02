@@ -9,6 +9,7 @@ export type CartContextProps = {
   cart: CartItemProps[];
   addItemToCart: (products: ProductProps) => void;
   removeItemFromCart: (product: ProductProps) => void;
+  emptyCart: () => void;
 };
 
 export type CartItemProps = {
@@ -20,6 +21,7 @@ export const CartContext = createContext<CartContextProps>({
   cart: [],
   addItemToCart: () => {},
   removeItemFromCart: () => {},
+  emptyCart: () => {},
 });
 
 export default function CartContextProvider({
@@ -64,8 +66,12 @@ export default function CartContextProvider({
     }
   };
 
+  const emptyCart = () => {
+    setCart([])
+  }
+
   return (
-    <CartContext.Provider value={{ cart, addItemToCart, removeItemFromCart }}>
+    <CartContext.Provider value={{ cart, addItemToCart, removeItemFromCart, emptyCart}}>
       {children}
     </CartContext.Provider>
   );

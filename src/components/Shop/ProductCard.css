@@ -3,13 +3,13 @@
     flex-direction: column;
     border: 1px solid black;
     border-radius: var(--border-radius-m);
-    transition: all 150 ease-in-out;
+    transition: all 150ms ease-in ;
     overflow: hidden;
 }
 
-/* #card-product:active {
+#card-product:active {
     transform: scale(.98);
-} */
+}
 
 #card-product .dark {
     background: var(--secondary-background-color-contrast);
@@ -38,7 +38,6 @@
     aspect-ratio: 10/7;
 }
 
-
 .card__content-wrapper {
     display: grid;
     grid-template-rows: 5rem 8rem auto;
@@ -48,8 +47,6 @@
     padding: 1rem;
     gap: 0.5rem;
 }
-
-
 
 .card-header {
     font-family: "GintoRounded_NordBoldItalic";
@@ -74,9 +71,27 @@
 .card__price-container {
     font-family: "GintoRounded_Medium";
     color: var(--text-price-color);
-    margin-bottom: auto;
+    margin-bottom: 0.9rem;
     margin-top: 1rem;
     display: flex;
     flex-direction:  column;
     gap: 1.5rem;
 }
+
+.card__button {
+    width: 100%;
+    transform: translateY(-1rem);
+    border-radius: 0 0 var(--border-radius-m) var(--border-radius-m);
+    transition: all 150ms ease-in;
+}
+
+.card__button:active {
+    transform: translateY(-1rem) ;
+    background-color: var(--info-color);
+    transition: all 100ms ease-in;
+}
+
+
+#card-product:active~.card__button {
+    transform: scale(.98) translateY(-1.2rem);
+} 

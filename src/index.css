@@ -54,6 +54,7 @@
   --text-warning-color: #ad1010;
   --button-background-color: #3147ea;
   --button-background-color-hover:  #2031ab; 
+  --button-background-color-hover-lightest:  #bdc5ff; 
 }
 
 .dark {
@@ -67,7 +68,8 @@
   --secondary-background-color-contrast: #2C2C2C;
   --contrast-background-color: #876767;
   --button-background-color: #f98e36;
-  --button-background-color-hover:  #f5773d; 
+  --button-background-color-hover:  #f5773d;
+  --button-background-color-hover-lightest: #8b2f0082;
 
   background-color: var(--secondary-background-color-lightest);
 }

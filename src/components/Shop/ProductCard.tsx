@@ -2,17 +2,23 @@ import "./ProductCard.css";
 import { type ProductProps } from "../../types";
 import { priceToLocaleString } from "../../utils/shopUtils";
 import { useThemeContext } from "../../hooks/";
-
+import CustomButton from "../Buttons/CustomButton";
+import useCartContext from "../../hooks/useCartContext";
 import { Link } from "react-router-dom";
+import useAuthContext from "../../hooks/useAuthContext";
 
 
 
 export default function ProductCard({ product }: { product: ProductProps }) {
+  const { isLogged } = useAuthContext();
+  const { addItemToCart } = useCartContext();
   const { theme } = useThemeContext();
   
   const {id, title, price, description, image } = product;
 
   return (
+    <div>
+
     <Link id="card-product" to={`/product/${id}`}>
       <div className="card__img-container">
         <img src={image} alt={`${title} product image`} />
@@ -24,8 +30,12 @@ export default function ProductCard({ product }: { product: ProductProps }) {
         </div>
         <div className="card__price-container">
           <span>{priceToLocaleString(price)}</span>
+        
         </div>
       </div>
     </Link>
+    {isLogged && <CustomButton text="Agregar al carrito"  className="card__button" action={() => addItemToCart(product)}/>}
+    </div>
+    
   );
 }

@@ -99,3 +99,15 @@
     text-align: right;
     margin: 1.5rem 1rem
 }
+
+.secondary-button {
+    margin: 0 2rem;
+    outline: 2px solid  var(--button-background-color-hover);
+    background-color: transparent;
+    color: var(--button-background-color-hover);
+}
+
+.secondary-button:hover {
+    background-color: var(--button-background-color-hover-lightest);
+
+}
