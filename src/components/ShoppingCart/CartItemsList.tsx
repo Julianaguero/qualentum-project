@@ -1,4 +1,4 @@
-import { CartItemProps } from "../../context/CartContext";
+import { CartItemProps } from "../../types";
 import CartItemCard from "./CartItemCard";
 
 interface CartItemsListProps {

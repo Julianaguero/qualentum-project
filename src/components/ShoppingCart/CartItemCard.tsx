@@ -1,4 +1,4 @@
-import { CartItemProps } from "../../context/CartContext"
+import { CartItemProps } from "../../types";
 import { priceToLocaleString } from "../../utils/shopUtils";
 
 interface Props {

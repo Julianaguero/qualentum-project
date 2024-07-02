@@ -1,4 +1,4 @@
-import { CartItemProps } from "../context/CartContext";
+import { CartItemProps } from "../types"
 
 export function priceToLocaleString(price: number) {
     return price.toLocaleString("fr-FR", {
