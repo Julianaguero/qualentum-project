@@ -1,14 +1,30 @@
-import "./Login-Form.css";
+import "./LoginForm.css";
 import CustomButton from "../Buttons/CustomButton";
 import FormInput from "./FormInput";
 import { userInputs } from "../../utils/constants";
 import useUserContext from "../../hooks/useAuthContext";
+import { useLocation, useNavigate } from "react-router-dom";
 
 
 
 const LoginForm  = (): JSX.Element => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  console.log(location);
 
   const {userData, isLogged, handleChange, handleLogin, handleLogout} = useUserContext()
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    handleLogin(event);
+    navigate(location.state.pathname)
+  }
+
+  const handleUserLogout = () => {
+    handleLogout();
+    navigate("/");
+
+  }
 
   return (
     <section id="login-form" >
@@ -18,11 +34,11 @@ const LoginForm  = (): JSX.Element => {
           <CustomButton
             text="Log Out"
             className="login-form__button"
-            action={handleLogout}
+            action={handleUserLogout}
           />
         </div>
       ) : (
-        <form onSubmit={handleLogin} className="login-form__container">
+        <form onSubmit={handleSubmit} className="login-form__container">
           {userInputs.map((input) => (
             <FormInput
               key={input.id}
