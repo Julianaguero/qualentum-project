@@ -55,3 +55,15 @@ export type CartItemProps = {
   product: ProductProps;
   quantity: number;
 };
+
+//ProductsProviderProps
+export type ProductsContextProps = {
+  filteredProducts: ListOfProducts;
+  setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export type ProductsContextProviderProps = {
+  children: React.ReactNode
+}
+
+

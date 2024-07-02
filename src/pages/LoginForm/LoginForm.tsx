@@ -1,9 +1,9 @@
 import "./LoginForm.css"; 
-import CustomButton from "../Buttons/CustomButton";
-import FormInput from "./FormInput";
 import { userInputs } from "../../utils/constants";
 import useUserContext from "../../hooks/useAuthContext";
 import { useLocation, useNavigate } from "react-router-dom";
+import CustomButton from "../../components/Buttons/CustomButton";
+import FormInput from "../../components/Login/FormInput";
 
 
 

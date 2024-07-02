@@ -1,20 +1,10 @@
 import { createContext, useState } from "react";
 import InitialProducts from "../utils/data.json"
-import { ListOfProducts } from "../types";
-
-export type ProductsContextProps = {
-    filteredProducts: ListOfProducts;
-    setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
-}
-
-export type ProductsContextProviderProps = {
-    children: React.ReactNode
-}
-
+import { type ListOfProducts, type ProductsContextProps, type ProductsContextProviderProps } from "../types";
 
 export const ProductsContext = createContext<ProductsContextProps>({
-    filteredProducts: [],
-    setSearchTerm: () => {},
+  filteredProducts: [],
+  setSearchTerm: () => {},
 })
 
 export default function ProductsContextProvider({children}: ProductsContextProviderProps) {

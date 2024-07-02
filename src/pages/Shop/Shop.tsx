@@ -1,7 +1,7 @@
-import Products from "../components/Shop/Products"
-import DiscountBanner from "../components/Shop/DiscountBanner"
+import Products from "../../components/Shop/Products"
+import DiscountBanner from "../../components/Shop/DiscountBanner"
 import "./Shop.css"
-import { useSearch, useThemeContext } from "../hooks";
+import { useSearch, useThemeContext } from "../../hooks";
 
 export default function Shop() {
   const { theme } = useThemeContext();

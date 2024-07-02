@@ -1,16 +1,16 @@
 import { Link, useParams } from "react-router-dom";
-import productList from "../utils/data.json";
+import CustomButton from "../../components/Buttons/CustomButton";
+import { useCartContext, useSearch, useThemeContext } from "../../hooks";
+import { priceToLocaleString } from "../../utils/shopUtils";
 import "./ProductPage.css";
-import { priceToLocaleString } from "../utils/shopUtils";
-import { useCartContext, useThemeContext } from "../hooks";
-import CustomButton from "../components/Buttons/CustomButton";
 
 const ProductPage = () => {
   const {theme} = useThemeContext()
   const { addItemToCart } = useCartContext();
+  const { filteredProducts } = useSearch()
 
   const params = useParams<{ productId: string }>();
-  const product = productList.find(item => item.id === Number(params.productId));
+  const product = filteredProducts.find(item => item.id === Number(params.productId));
 
   return (
     <main className={`product-page ${theme}`}>

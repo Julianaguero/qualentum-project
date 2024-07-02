@@ -1,7 +1,7 @@
-import CustomButton from "../components/Buttons/CustomButton";
-import CartItemsList from "../components/ShoppingCart/CartItemsList";
-import { useCartContext, useThemeContext } from "../hooks";
-import { calcTotalPrice, priceToLocaleString, sumItems } from "../utils/shopUtils";
+import CustomButton from "../../components/Buttons/CustomButton";
+import CartItemsList from "../../components/ShoppingCart/CartItemsList";
+import { useCartContext, useThemeContext } from "../../hooks";
+import { calcTotalPrice, priceToLocaleString, sumItems } from "../../utils/shopUtils";
 
 import "./ShoppingCart.css";
 
