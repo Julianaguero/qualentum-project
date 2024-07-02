@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 export default function Header() {
   const { theme } = useThemeContext();
-  const {setSearchTerm} = useSearch()
+  const { setSearchTerm } = useSearch()
   const { clicked, toggleClicked } = useToggleNavbar();
 
 

@@ -5,14 +5,17 @@ import ThemeContextProvider from "./context/ThemeContext.tsx";
 import "./index.css";
 import CartContextProvider from "./context/CartContext.tsx";
 import UserContextProvider from "./context/AuthContext.tsx";
+import ProductsContextProvider  from "./context/ProductsContext.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ThemeContextProvider>
       <UserContextProvider>
-        <CartContextProvider>
-          <App />
-        </CartContextProvider>
+        <ProductsContextProvider>
+          <CartContextProvider>
+            <App />
+          </CartContextProvider>
+        </ProductsContextProvider>
       </UserContextProvider>
     </ThemeContextProvider>
   </React.StrictMode>
