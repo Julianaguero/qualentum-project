@@ -1,6 +1,7 @@
 import "./Products.css";
 import ProductCard from "./ProductCard";
 import { type ListOfProducts, type ProductProps } from "../../types";
+import ProductNotFound from "./ProductNotFound";
 
 interface Props {
   products: ListOfProducts;
@@ -8,6 +9,8 @@ interface Props {
 
 
 const Products : React.FC<Props> = ({products}) => {
+
+  if(products.length === 0) return <ProductNotFound />
 
   return (
     <section >
