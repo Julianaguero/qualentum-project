@@ -7,35 +7,36 @@ import useCartContext from "../../hooks/useCartContext";
 import { Link } from "react-router-dom";
 import useAuthContext from "../../hooks/useAuthContext";
 
-
-
 export default function ProductCard({ product }: { product: ProductProps }) {
   const { isLogged } = useAuthContext();
   const { addItemToCart } = useCartContext();
   const { theme } = useThemeContext();
-  
-  const {id, title, price, description, image } = product;
+
+  const { id, title, price, description, image } = product;
 
   return (
-    <div>
-
-    <Link id="card-product" to={`/product/${id}`}>
-      <div className="card__img-container">
-        <img src={image} alt={`${title} product image`} />
-      </div>
-      <div className={`card__content-wrapper ${theme}`} > 
-        <h4 className="card-header">{title}</h4>
-        <div className="card-body">
-          <p>{description}</p>
+    <div className="card-product-container">
+      <Link id="card-product" to={`/product/${id}`}>
+        <div className="card__img-container">
+          <img src={image} alt={`${title} product image`} />
         </div>
-        <div className="card__price-container">
-          <span>{priceToLocaleString(price)}</span>
-        
+        <div className={`card__content-wrapper ${theme}`}>
+          <h4 className="card-header">{title}</h4>
+          <div className="card-body">
+            <p>{description}</p>
+          </div>
+          <div className="card__price-container">
+            <span>{priceToLocaleString(price)}</span>
+          </div>
         </div>
-      </div>
-    </Link>
-    {isLogged && <CustomButton text="Agregar al carrito"  className="card__button" action={() => addItemToCart(product)}/>}
+      </Link>
+      {isLogged && (
+        <CustomButton
+          text="Agregar al carrito"
+          className="card__button"
+          action={() => addItemToCart(product)}
+        />
+      )}
     </div>
-    
   );
 }

@@ -1,3 +1,7 @@
+.card-product-container {
+    display: grid;
+}
+
 #card-product {
     display: flex;
     flex-direction: column;
@@ -5,6 +9,12 @@
     border-radius: var(--border-radius-m);
     transition: all 150ms ease-in ;
     overflow: hidden;
+}
+
+:has(.card__button) #card-product {
+    border-radius: var(--border-radius-m) var(--border-radius-m) 0 0;
+    border: 1px solid black;
+    border-bottom: 0;
 }
 
 #card-product:active {
@@ -80,18 +90,18 @@
 
 .card__button {
     width: 100%;
-    transform: translateY(-1rem);
     border-radius: 0 0 var(--border-radius-m) var(--border-radius-m);
     transition: all 150ms ease-in;
+    border: 1px solid black;
+
 }
 
 .card__button:active {
-    transform: translateY(-1rem) ;
+    transform: none;
     background-color: var(--info-color);
     transition: all 100ms ease-in;
 }
 
-
 #card-product:active~.card__button {
-    transform: scale(.98) translateY(-1.2rem);
+    transform:  scale(.98) translateY(-6px);
 } 

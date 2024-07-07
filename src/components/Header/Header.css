@@ -60,6 +60,14 @@ body {
 }
 
 @media (max-width: 768px)  {
+  :has(.active) #header {
+    position: fixed;
+  }
+
+  :has(.active) body {
+    overflow: hidden;
+  }
+
   .header__logo-container {
     width: 15rem;
   }
@@ -85,13 +93,15 @@ body {
     flex-direction: column-reverse;
     align-items: center;
     justify-content: start;
-    position: absolute;
+    position: fixed;
     margin-inline: auto;
     top: 5rem;
     left: 0;
     right: 0;
     background: var(--secondary-background-color-lightest);
   }
+
+
 
   
 }

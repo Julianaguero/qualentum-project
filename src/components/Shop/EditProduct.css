@@ -1,0 +1,17 @@
+.edit-product-container {
+    display: grid;
+    align-items: center;
+    max-width: 2rem;
+    padding: 9rem 7rem;
+    background-color: var(--primary-background-color);
+    color: var(--text-secondary-color);
+}
+
+.edit-product__icon {
+    height: 15px;
+    width: 15px;
+}
+
+.edit-product__button:hover {
+    color: var(--info-color);
+}
