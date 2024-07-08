@@ -1,5 +1,6 @@
 .card-product-container {
     display: grid;
+    position: relative;
 }
 
 #card-product {

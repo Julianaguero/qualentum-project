@@ -1,4 +1,5 @@
 import { RiPencilLine, RiDeleteBin6Line } from "react-icons/ri";
+import "./EditProduct.css"
 
 
 

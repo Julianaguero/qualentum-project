@@ -10,7 +10,7 @@ interface CartItemsListProps {
     return (
       <ul className="shopping-cart__list">
         {cart.map((item) => (
-          <CartItemCard item={item}/>
+          <CartItemCard key={item.product.id} item={item}/>
         ))}
       </ul>
     );

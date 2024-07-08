@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 import InitialProducts from "../utils/data.json"
 import { type ListOfProducts, type ProductsContextProps, type ProductsContextProviderProps } from "../types";
+import { filterProducts } from "../utils/shopUtils";
 
 export const ProductsContext = createContext<ProductsContextProps>({
   filteredProducts: [],
@@ -12,16 +13,10 @@ export default function ProductsContextProvider({children}: ProductsContextProvi
     
   const [searchTerm, setSearchTerm] = useState("");
 
-  const filterProducts = (products: ListOfProducts) => {
-    return products?.filter((product) => {
-      return product.title
-        .toLocaleLowerCase()
-        .includes(searchTerm.trim().toLocaleLowerCase());
-    });
-  };
+  
   
 
-  const filteredProducts = filterProducts(products);
+  const filteredProducts = filterProducts(products, searchTerm);
 
 
     return (

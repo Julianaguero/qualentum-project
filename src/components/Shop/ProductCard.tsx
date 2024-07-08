@@ -6,6 +6,7 @@ import CustomButton from "../Buttons/CustomButton";
 import useCartContext from "../../hooks/useCartContext";
 import { Link } from "react-router-dom";
 import useAuthContext from "../../hooks/useAuthContext";
+import EditProduct from "./EditProduct";
 
 export default function ProductCard({ product }: { product: ProductProps }) {
   const { isLogged } = useAuthContext();
@@ -16,6 +17,7 @@ export default function ProductCard({ product }: { product: ProductProps }) {
 
   return (
     <div className="card-product-container">
+      <EditProduct />
       <Link id="card-product" to={`/product/${id}`}>
         <div className="card__img-container">
           <img src={image} alt={`${title} product image`} />
