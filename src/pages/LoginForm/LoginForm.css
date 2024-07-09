@@ -1,24 +1,33 @@
 #login-form {
     max-width: var(--max-width);
-    margin: 5rem auto;
+    margin: 5rem auto 0;
     padding: 5rem 2rem;
     height: 100%;
     min-height: 50dvh;
+    color: var(--text-secondary-color)
+
     
 }
 
-.dark {
-    background: var(--secondary-background-color-contrast);
+#login-form .dark {
+    background: var(--secondary-background-color);
     color: var(--text-secondary-color)
 }
 
 .login-form__container {
     max-width: 600px;
-    min-height: 450px;
     padding: 4rem;
     margin: 0 auto;
     border: 2px solid var(--secondary-background-color);
     border-radius: var(--border-radius-m);
+    background: var(--primary-background-color-dark);
+}
+
+.login-form__container h1 {
+    color: var(--text-secondary-color);
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 2rem;
 }
 
 .login-form__logout-container {
@@ -27,6 +36,7 @@
     align-items: center;
     justify-content: center;
     gap: 3rem;
+    color: var(--text-secondary-color);
 }
 
 .login-form__button-container {

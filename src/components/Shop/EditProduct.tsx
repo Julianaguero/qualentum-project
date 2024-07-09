@@ -2,7 +2,7 @@ import { RiPencilLine, RiDeleteBin6Line } from "react-icons/ri";
 import "./EditProduct.css"
 import useProducts from "../../hooks/useProducts";
 import { ProductProps } from "../../types";
-import UpdateProductForm from "./UpdateProductForm";
+import ProductForm from "./ProductForm";
 import GenericModal from "../shared/GenericModal";
 import useModal from "../../hooks/useModal";
 
@@ -31,7 +31,7 @@ const EditProduct : React.FC<Props> = ({product}) => {
             <li><button onClick={handleDelete} className="edit-product__button"><RiDeleteBin6Line className="edit-product__icon"/></button></li>
         </ul>
         <GenericModal onClose={handleModal}  isOpen={isModalOpen}>
-          <UpdateProductForm product={product} updateProducts={updateProducts} />
+          <ProductForm product={product} CRUDAction={updateProducts} actionType="update" handleModal={handleModal}/>
         </GenericModal>
 
     </>

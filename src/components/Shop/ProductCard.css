@@ -23,7 +23,7 @@
 }
 
 #card-product .dark {
-    background: var(--secondary-background-color-contrast);
+    background: var(--secondary-background-color-light);
     color: var(--text-secondary-color)
 }
 
@@ -39,6 +39,8 @@
     display: flex;
     justify-content: center;
     align-items: start;
+    aspect-ratio: 10/7;
+
 }
 
 .card__img-container img {   
@@ -73,8 +75,9 @@
 .card-body p {
     font-size: 0.9rem;
     padding: 0;
+    line-height: 1.4;
     display: -webkit-box;
-    -webkit-line-clamp: 8;
+    -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }

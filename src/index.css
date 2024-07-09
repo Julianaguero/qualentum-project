@@ -41,11 +41,24 @@
   --border-radius-l: 20px;
   --border-radius-xl: 25px;
 
+  --extra-light-color: #e8eaf3;
+  --light-color: #d8dbe3;
+  --medium-light-color: #8a9ab9;
+  --medium-color: #050505;
+  --medium-dark-color: #3e4553;
+  --dark-color: #2f3444;
+  --extra-dark-color: #242938;
+
+
   --primary-background-color:rgba(255, 255, 255);
   --primary-background-color-dark:rgb(229 231 235);
+  --primary-background-color-extra-light:#e8eaf3;
+  --primary-background-color-light: #d8dbe3;
+  --primary-background-color-medium-light: #9099a9;
   --secondary-background-color: #242424;
   --secondary-background-color-light: #353535;
   --secondary-background-color-lightest: #747474;
+  --secondary-background-color-medium: #1a1919;
   --contrast-background-color:  rgb(156 163 175);
   --info-color: #f0ad4e;
   --text-primary-color:rgb(250, 250, 242);
@@ -62,7 +75,8 @@
   --primary-background-color-dark:rgb(109, 112, 116);
   --secondary-background-color: #242424;
   --secondary-background-color-light: #1F1F1F;
-  --secondary-background-color-lightest: #353535;
+  --secondary-background-color-lightest: #48474d;
+  --secondary-background-color-medium: #353535;
   --secondary-background-color-contrast: #2C2C2C;
   --contrast-background-color: #876767;
   --text-primary-color: #ffffff;

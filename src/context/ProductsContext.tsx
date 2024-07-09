@@ -8,15 +8,17 @@ import useProductsAPI from "../hooks/useProductsAPI";
 export const ProductsContext = createContext<ProductsContextProps>({
   filteredProducts: [],
   products: [],
+  isLoading: false,
   setProducts: () => {},
   setSearchTerm: () => {},
+  createProducts: async () => {},
   updateProducts: async () => {},
   deleteProducts: async () => {},
 })
 
 export default function ProductsContextProvider({children}: ProductsContextProviderProps) {
   // const [products] = useState<ListOfProducts>(InitialProducts);
-  const {products, setProducts, getProducts,updateProducts, deleteProducts} = useProductsAPI();
+  const {products, setProducts, isLoading, getProducts, createProducts, updateProducts, deleteProducts} = useProductsAPI();
     
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -37,7 +39,7 @@ export default function ProductsContextProvider({children}: ProductsContextProvi
 
 
     return (
-        <ProductsContext.Provider value={{filteredProducts, products, setProducts, setSearchTerm, updateProducts, deleteProducts}}>
+        <ProductsContext.Provider value={{filteredProducts, products, isLoading, setProducts, setSearchTerm, createProducts, updateProducts, deleteProducts}}>
             {children}
         </ProductsContext.Provider>
     )

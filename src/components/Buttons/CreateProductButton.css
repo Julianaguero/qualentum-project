@@ -1,0 +1,41 @@
+.create-product__button {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    border-radius: var(--border-radius-l);
+    background: var(--primary-background-color-extra-light);
+    border: 6px solid var(--primary-background-color-medium-light);
+    text-align: center;
+    min-height: 30rem;
+    transition: all 100ms ease;
+}
+
+.create-product__icon {
+    color: var( --primary-background-color-medium-light);
+    width: 9rem;
+    height: 9rem;
+    
+}
+
+.create-product__button:hover {
+    border:  6px solid var(--button-background-color);
+}
+
+.create-product__button:hover .create-product__icon {
+    color: var(--button-background-color);
+}
+
+.create-product__button:active {
+    transform: scale(0.98);
+    border:  6px solid var(--button-background-color-hover);
+}
+
+.create-product__button:active .create-product__icon {
+    color: var(--button-background-color-hover);
+
+}
+
+
+:has(.dark) .create-product__button {
+    background: var(--secondary-background-color-light);
+}

@@ -61,8 +61,10 @@ export type CartItemProps = {
 export type ProductsContextProps = {
   filteredProducts: ListOfProducts;
   products: ListOfProducts;
+  isLoading: boolean;
   setProducts: React.Dispatch<React.SetStateAction<ListOfProducts>>;
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+  createProducts: (product: ProductProps) => void;
   updateProducts: (product: ProductProps) => void;
   deleteProducts: (productId: string) => void;
 }

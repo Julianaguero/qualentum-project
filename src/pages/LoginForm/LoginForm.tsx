@@ -4,10 +4,12 @@ import useAuthContext from "../../hooks/useAuthContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import CustomButton from "../../components/Buttons/CustomButton";
 import FormInput from "../../components/Login/FormInput";
+import { useThemeContext } from "../../hooks";
 
 
 
 const LoginForm  = (): JSX.Element => {
+  const { theme } = useThemeContext()
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -24,7 +26,8 @@ const LoginForm  = (): JSX.Element => {
   }
 
   return (
-    <section id="login-form" >
+    <section id="login-form" className={theme}>
+      
       {isLogged ? (
         <div className="login-form__container login-form__logout-container ">
           <p>¿Quieres cerrar sesión, {userData.username}?</p>
@@ -36,6 +39,7 @@ const LoginForm  = (): JSX.Element => {
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="login-form__container">
+          <h1>Login</h1>
           {userInputs.map((input) => (
             <FormInput
               key={input.id}

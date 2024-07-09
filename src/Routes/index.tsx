@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
-import { LoginForm,Shop, ProductPage, ShoppingCart, ErrorPage} from "../pages/index";
+import { LoginForm,Shop, ProductPage, ShoppingCart, CustomMessagePage} from "../pages/index";
 import ProtectedRoute from "../components/Login/ProtectedRoute";
 
 
@@ -38,7 +38,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/*",
-                element: <ErrorPage />
+                element: <CustomMessagePage />
             }
 
         ]

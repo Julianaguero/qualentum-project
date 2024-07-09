@@ -1,11 +1,11 @@
-import ErrorPage  from "./ErrorPage/ErrorPage";
+import CustomMessagePage  from "./ErrorPage/CustomMessagePage";
 import LoginForm from "./LoginForm/LoginForm";
 import ProductPage from "./ProductPage/ProductPage";
 import Shop from "./Shop/Shop";
 import ShoppingCart from "./ShoppingCart/ShoppingCart";
 
 export {
-    ErrorPage,
+    CustomMessagePage,
     LoginForm,
     ShoppingCart,
     ProductPage,

@@ -1,0 +1,14 @@
+
+
+.form-input__textarea {
+    padding: 15px;
+    margin: 10px 0px;
+    border-radius: var(--border-radius-s);
+    border: 1px solid gray;
+}
+
+.form-input span {
+    color: var(--text-warning-color);
+    padding: 0.2rem;
+    display: none;
+}
