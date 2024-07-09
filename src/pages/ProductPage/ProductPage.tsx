@@ -10,7 +10,7 @@ const ProductPage = () => {
   const { filteredProducts } = useSearch()
 
   const params = useParams<{ productId: string }>();
-  const product = filteredProducts.find(item => item.id === Number(params.productId));
+  const product = filteredProducts.find(item => item.id === params.productId);
 
   return (
     <main className={`product-page ${theme}`}>

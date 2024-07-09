@@ -9,7 +9,7 @@ import useAuthContext from "../../hooks/useAuthContext";
 import EditProduct from "./EditProduct";
 
 export default function ProductCard({ product }: { product: ProductProps }) {
-  const { isLogged } = useAuthContext();
+  const { isLogged, userData } = useAuthContext();
   const { addItemToCart } = useCartContext();
   const { theme } = useThemeContext();
 
@@ -17,7 +17,7 @@ export default function ProductCard({ product }: { product: ProductProps }) {
 
   return (
     <div className="card-product-container">
-      <EditProduct />
+      {userData.role === "admin" && <EditProduct product={product}/>}
       <Link id="card-product" to={`/product/${id}`}>
         <div className="card__img-container">
           <img src={image} alt={`${title} product image`} />

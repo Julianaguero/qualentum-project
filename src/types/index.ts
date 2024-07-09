@@ -1,5 +1,5 @@
 export type ProductProps = {
-    "id": number,
+    "id": string,
     "title": string,
     "price": number,
     "description":string,
@@ -29,6 +29,7 @@ export type ThemeContextProps = {
 export interface UserDataProps {
   username: string,
   email: string,
+  role: "admin" | "user" | "notAsigned"
 }
 
 export type AuthContextProps = {
@@ -59,7 +60,11 @@ export type CartItemProps = {
 //ProductsProviderProps
 export type ProductsContextProps = {
   filteredProducts: ListOfProducts;
+  products: ListOfProducts;
+  setProducts: React.Dispatch<React.SetStateAction<ListOfProducts>>;
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+  updateProducts: (product: ProductProps) => void;
+  deleteProducts: (productId: string) => void;
 }
 
 export type ProductsContextProviderProps = {

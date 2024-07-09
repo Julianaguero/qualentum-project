@@ -1,6 +1,6 @@
 import "./LoginForm.css"; 
 import { userInputs } from "../../utils/constants";
-import useUserContext from "../../hooks/useAuthContext";
+import useAuthContext from "../../hooks/useAuthContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import CustomButton from "../../components/Buttons/CustomButton";
 import FormInput from "../../components/Login/FormInput";
@@ -11,9 +11,7 @@ const LoginForm  = (): JSX.Element => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  console.log(location);
-
-  const {userData, isLogged, handleChange, handleLogin, handleLogout} = useUserContext()
+  const {userData, isLogged, handleChange, handleLogin, handleLogout} = useAuthContext()
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     handleLogin(event);
@@ -23,7 +21,6 @@ const LoginForm  = (): JSX.Element => {
   const handleUserLogout = () => {
     handleLogout();
     navigate("/");
-
   }
 
   return (

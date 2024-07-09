@@ -12,6 +12,7 @@ export default function AuthContextProvider({children}: AuthContextProviderProps
   const [userData, setUserData] = useState<UserDataProps>({
     username: "",
     email: "",
+    role: "notAsigned",
   });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,15 +25,17 @@ export default function AuthContextProvider({children}: AuthContextProviderProps
 
   const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setItem(userData);
+    const userDataWithRole = {
+      ...userData,
+      role: userData.email.includes("@admin") ? userData.role = "admin" : "user"}
+    setItem(userDataWithRole);
     setIsLogged(true);
   };
 
   const handleLogout = () => {
     removeItem();
-    setUserData({ username: "", email: "" });
+    setUserData({ username: "", email: "", role: "notAsigned" });
     setIsLogged(false);
-    console.log(userData)
   };
     
     useEffect(() => {
@@ -40,7 +43,8 @@ export default function AuthContextProvider({children}: AuthContextProviderProps
         if (userInLocalStorage && userInLocalStorage.username && userInLocalStorage.email) {
           setUserData({
             username: userInLocalStorage.username,
-            email: userInLocalStorage.email
+            email: userInLocalStorage.email,
+            role: userInLocalStorage.role
           });
           setIsLogged(true);
         }

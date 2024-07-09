@@ -3,7 +3,7 @@ import "./FormInput.css"
 
 interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
-  errorMessage: string,
+  errorMessage?: string,
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
