@@ -1,7 +1,10 @@
+import { useDispatch, useSelector } from "react-redux";
 import CustomButton from "../../components/Buttons/CustomButton";
 import CartItemsList from "../../components/ShoppingCart/CartItemsList";
-import { useCartContext, useThemeContext } from "../../hooks";
+import { useThemeContext } from "../../hooks";
 import { calcTotalPrice, priceToLocaleString, sumItems } from "../../utils/shopUtils";
+import { type RootState } from "../../state/store";
+import {emptyCart} from "../../state/cart/cartSlice"
 
 import "./ShoppingCart.css";
 
@@ -9,11 +12,17 @@ import "./ShoppingCart.css";
 
 const ShoppingCart: React.FC = () => {
   const { theme } = useThemeContext();
-  const { cart, emptyCart } = useCartContext();
+  // const { cart, emptyCart } = useCartContext();
+  const dispatch = useDispatch()
+  const cart = useSelector((state: RootState) => state.cart.cart)
 
   const handleCheckout = () => {
     alert("Esta siendo redirigido a la pasarela de pago. <3");
-    emptyCart();
+    dispatch(emptyCart());
+  }
+
+  const handleEmptyCart = () => {
+    dispatch(emptyCart());
   }
 
   return (
@@ -36,7 +45,7 @@ const ShoppingCart: React.FC = () => {
         {cart.length > 0 && (
           <div className="shopping-cart__button-container">
             <CustomButton text="Finalizar Compra" action={handleCheckout}  />
-            <CustomButton text="Vaciar carrito 😪" action={emptyCart} className="secondary-button" />
+            <CustomButton text="Vaciar carrito 😪" action={handleEmptyCart} className="secondary-button" />
           </div>
         )}
       </section>

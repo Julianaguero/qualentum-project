@@ -69,8 +69,8 @@ export type ProductsContextProps = {
   deleteProducts: (productId: string) => void;
 }
 
-export type ProductsContextProviderProps = {
-  children: React.ReactNode
-}
+export type ProductsContextProviderProps = ChildrenProp;
+
+
 
 

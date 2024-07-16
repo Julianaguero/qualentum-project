@@ -3,15 +3,23 @@ import { type ProductProps } from "../../types";
 import { priceToLocaleString } from "../../utils/shopUtils";
 import { useThemeContext } from "../../hooks/";
 import CustomButton from "../Buttons/CustomButton";
-import useCartContext from "../../hooks/useCartContext";
+// import useCartContext from "../../hooks/useCartContext";
 import { Link } from "react-router-dom";
 import useAuthContext from "../../hooks/useAuthContext";
 import EditProduct from "./EditProduct";
 
+import { addItem } from "../../state/cart/cartSlice"; 
+import { useDispatch } from "react-redux";
+
 export default function ProductCard({ product }: { product: ProductProps }) {
   const { isLogged, userData } = useAuthContext();
-  const { addItemToCart } = useCartContext();
   const { theme } = useThemeContext();
+  // const { addItemToCart } = useCartContext();
+  const dispatch = useDispatch();
+  
+  const addItemToCart = () => {
+    dispatch(addItem(product))
+  }
 
   const { id, title, price, description, image } = product;
 
@@ -36,7 +44,7 @@ export default function ProductCard({ product }: { product: ProductProps }) {
         <CustomButton
           text="Agregar al carrito"
           className="card__button"
-          action={() => addItemToCart(product)}
+          action={() => addItemToCart()}
         />
       )}
     </div>
