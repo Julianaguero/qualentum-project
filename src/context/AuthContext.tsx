@@ -9,6 +9,7 @@ export default function AuthContextProvider({children}: AuthContextProviderProps
   const getItemRef = useRef(getItem);
   
   const [isLogged, setIsLogged] = useState(false);
+  const [authChecked, setAuthChecked] = useState(false);
   const [userData, setUserData] = useState<UserDataProps>({
     username: "",
     email: "",
@@ -48,10 +49,11 @@ export default function AuthContextProvider({children}: AuthContextProviderProps
           });
           setIsLogged(true);
         }
+        setAuthChecked(true);
       }, []);
 
     
   return (
-    <AuthContext.Provider value={{userData, isLogged, handleChange, handleLogout, handleLogin  }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{userData, authChecked, isLogged, handleChange, handleLogout, handleLogin  }}>{children}</AuthContext.Provider>
   )
 }

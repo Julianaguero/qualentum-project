@@ -18,16 +18,26 @@ const useProductsAPI = () => {
     }
   };
 
+  const handleResponseErrors = (response: Response, customtext: string) => {
+    if (response.status === 404) {
+      throw new Error('Producto no encontrado');
+    } else if (response.status === 500) {
+      throw new Error('Error interno del servidor');
+    } else {
+      throw new Error(`${customtext}: ${response.statusText}`);
+    }
+  }
+
   const getProducts = async (): Promise<void> => {
     try {
       setIsLoading(true);
       const response = await fetch(`${BASE_URL}/products`);
       if (!response.ok)
-        throw new Error(`Error al obtener el producto: ${response.statusText}`);
+        handleResponseErrors(response, "Error al obtener los productos");
       const data = await response.json();
       setProducts(data as ListOfProducts);
       setError(null);
-      console.log("rendering products");
+      console.log("render")
     } catch (error) {
      handleErrors(error);
     } finally {
@@ -46,7 +56,7 @@ const useProductsAPI = () => {
         body: JSON.stringify(newProduct),
       })
       if(!response.ok) {
-        throw new Error ("Error al crear el producto")
+        handleResponseErrors(response, "Error al crear el producto");
       }
       const data : ProductProps= await response.json();
       setProducts(prevProducts => ([
@@ -78,7 +88,7 @@ const useProductsAPI = () => {
         }
       );
       if (!response.ok) {
-        throw new Error("Error al actualizar el producto");
+        handleResponseErrors(response, "Error al modificar el producto");
       }
       const data = await response.json();
       setProducts((prevProducts) =>
@@ -107,7 +117,7 @@ const useProductsAPI = () => {
         method: "DELETE",
       });
       if (!response.ok) {
-        throw Error(`Error al eliminar el producto, ${response.statusText}`);
+        handleResponseErrors(response, "Error al eliminar el producto");
       }
       setProducts(products.filter((product) => product.id !== productId));
       setError(null);

@@ -6,8 +6,12 @@ interface Props {
 }
 
 const ProtectedRoute: React.FC<Props> = ({ children }) => {
-  const { isLogged } = useAuthContext();
+  const { isLogged, authChecked } = useAuthContext();
   const location = useLocation();
+
+  if(!authChecked){
+    return null;
+}
 
   return isLogged ? children : <Navigate to={"/login"} state={location} />;
 };

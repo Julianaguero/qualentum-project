@@ -9,11 +9,14 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
+    color: var(--text-secondary-color);
 }
 
 .product-page__image-wrapper {
     background: white;
     border-radius: var(--border-radius-l);
+    display: flex;
+    align-items: center;
 }
 
 .product-page__image {

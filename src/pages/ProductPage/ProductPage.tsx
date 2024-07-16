@@ -1,16 +1,22 @@
 import { Link, useParams } from "react-router-dom";
 import CustomButton from "../../components/Buttons/CustomButton";
-import { useCartContext, useSearch, useThemeContext } from "../../hooks";
+import { useCartContext, useThemeContext } from "../../hooks";
 import { priceToLocaleString } from "../../utils/shopUtils";
 import "./ProductPage.css";
+import ProductNotFound from "../../components/Shop/ProductNotFound";
+import CustomMessagePage from "../ErrorPage/CustomMessagePage";
+import useProducts from "../../hooks/useProducts";
 
 const ProductPage = () => {
   const {theme} = useThemeContext()
   const { addItemToCart } = useCartContext();
-  const { filteredProducts } = useSearch()
+  const { filteredProducts, isLoading} = useProducts()
 
   const params = useParams<{ productId: string }>();
   const product = filteredProducts.find(item => item.id === params.productId);
+
+  if(isLoading) <CustomMessagePage title="Cargando..." textInfo="No desesperes... ya casi estamos 😪"/>
+  if(!product && undefined)  <ProductNotFound />
 
   return (
     <main className={`product-page ${theme}`}>

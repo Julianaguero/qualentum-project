@@ -3,7 +3,6 @@
     padding: 2rem;
     height: 100%;
     min-height: 75dvh;
-
 }
 
 .shopping-cart__list-container {
@@ -13,12 +12,13 @@
 
 .shopping-cart__header {
     background-color: var(--primary-background-color-dark);
+    color: var(--text-secondary-color);
     padding: 1.5rem;
     margin-bottom: 2rem;
 }
 
 .shopping-cart__content {
-    color: var(--text-secondary-color)
+    color: var(--text-secondary-color);
 }
 
 .shopping-cart__title {
@@ -44,11 +44,10 @@
 
 .shopping-cart__item-image-container {
     position: relative;
-    width: 8rem;
+    min-width: 8rem;
     height: 8rem;
     padding: 0.5rem;
-    z-index: -10;
-
+    aspect-ratio: 2/2;
 }
 
 .shopping-cart__item-image {

@@ -35,6 +35,7 @@ export interface UserDataProps {
 export type AuthContextProps = {
   userData: UserDataProps,
   isLogged: boolean,
+  authChecked: boolean,
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
   handleLogin: (event: React.FormEvent<HTMLFormElement>) => void,
   handleLogout: () => void,
@@ -62,7 +63,6 @@ export type ProductsContextProps = {
   filteredProducts: ListOfProducts;
   products: ListOfProducts;
   isLoading: boolean;
-  setProducts: React.Dispatch<React.SetStateAction<ListOfProducts>>;
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
   createProducts: (product: ProductProps) => void;
   updateProducts: (product: ProductProps) => void;

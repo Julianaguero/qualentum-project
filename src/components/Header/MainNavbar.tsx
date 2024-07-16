@@ -9,7 +9,6 @@ interface Props {
 }
 
 const MainNavbar: React.FC<Props> = ({ toggleClicked, getSearchTerm }) => {
-
   const [searchTerm, setSearchTerm] = useState("")
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
