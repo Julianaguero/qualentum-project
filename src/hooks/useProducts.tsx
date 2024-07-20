@@ -1,14 +1,30 @@
-import { useContext } from "react";
-import { ProductsContext } from "../context/ProductsContext";
+import { createProductsThunk, deleteProductsThunk, getProductsThunk, updateProductsThunk } from "../state/products/productsAPIActions";
+import { type ProductProps } from "../types";
+import { useAppDispatch, useAppSelector } from "./store";
 
 const useProducts = () => {
-  const context = useContext(ProductsContext);
+  const dispatch = useAppDispatch();
+  const {products, isLoading, isError} = useAppSelector(state => state.products);
 
-  if (context === undefined) {
-    throw Error("useProducts must be used within a ProductsProvider");
+  const getProducts = () => {
+    dispatch(getProductsThunk())
   }
 
-  return context;
+  const createProducts = (product: ProductProps) => {
+    dispatch(createProductsThunk(product))
+  }
+
+  const updateProducts = (product: ProductProps) => {
+    dispatch(updateProductsThunk(product))
+  }
+
+  const deleteProducts = (productId: string) => {
+    dispatch(deleteProductsThunk(productId))
+  }
+
+ 
+  
+  return { products, isLoading, isError, getProducts, createProducts, updateProducts, deleteProducts} as const
 };
 
 export default useProducts;

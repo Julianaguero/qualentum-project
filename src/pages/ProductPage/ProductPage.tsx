@@ -1,27 +1,21 @@
 import { Link, useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import CustomButton from "../../components/Buttons/CustomButton";
 import ProductNotFound from "../../components/Shop/ProductNotFound";
 import CustomMessagePage from "../ErrorPage/CustomMessagePage";
-import { useThemeContext } from "../../hooks";
+import { useCartActions, useThemeActions } from "../../hooks";
 import useProducts from "../../hooks/useProducts";
-import { addItem } from "../../state/cart/cartSlice";
 import { priceToLocaleString } from "../../utils/shopUtils";
-import { type ProductProps } from "../../types";
 import "./ProductPage.css";
 
 const ProductPage = () => {
-  const dispatch = useDispatch();
-  const { theme } = useThemeContext();
-  // const { addItemToCart } = useCartContext();
+  const { theme } = useThemeActions();
+  const { addItemToCart } = useCartActions();
   const { filteredProducts, isLoading } = useProducts();
 
   const params = useParams<{ productId: string }>();
   const product = filteredProducts.find((item) => item.id === params.productId);
 
-  const addItemToCart = (product: ProductProps) => {
-    dispatch(addItem(product));
-  };
+ 
 
   if (isLoading)
     <CustomMessagePage

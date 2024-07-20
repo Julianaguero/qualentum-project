@@ -1,14 +1,20 @@
-import useCartContext from "./useCartContext";
-import useLocalStorage from "./useLocalStorage";
 import useSearch from "./useSearch";
-import useThemeContext from "./useThemeContext";
+import useThemeActions from "./useThemeActions";
 import useToggleNavbar from "./useToggleNabar";
+import useCartActions from "./useCartActions";
+import useAuthActions from "./useAuthActions";
+import useProducts from "./useProducts";
+import { useAppDispatch, useAppSelector } from "./store";
+// import useLocalStorage from "./unusedHooks/useLocalStorage";
 
 export {
-    useCartContext,
+    useAuthActions,
+    useCartActions,
     useSearch,
-    useThemeContext,
+    useProducts,
+    useThemeActions,
     useToggleNavbar,
-    useLocalStorage
-
+    useAppDispatch,
+    useAppSelector
+    // useLocalStorage,
 }

@@ -15,15 +15,7 @@ type ChildrenProp = {children: React.ReactNode}
 
 export type ListOfProducts = ProductProps[];
 
-//ThemeContext Props
-export type ThemeContextProviderProps = ChildrenProp;
-
 export type ThemeProps = "dark" | "light"
-
-export type ThemeContextProps = {
-  theme: ThemeProps;
-  toggleTheme: () => void;
-}
 
 // UserContextProps
 export interface UserDataProps {
@@ -44,15 +36,6 @@ export type AuthContextProps = {
 export type AuthContextProviderProps = ChildrenProp;
 
 //CartContextProps
-export type CartContextProviderProps = ChildrenProp;
-
-export type CartContextProps = {
-  cart: CartItemProps[];
-  addItemToCart: (products: ProductProps) => void;
-  removeItemFromCart: (product: ProductProps) => void;
-  emptyCart: () => void;
-};
-
 export type CartItemProps = {
   product: ProductProps;
   quantity: number;

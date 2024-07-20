@@ -1,10 +1,10 @@
-import { useThemeContext } from '../../hooks/'
-import useUserContext from '../../hooks/useAuthContext'
+
+import {useAuthActions, useThemeActions } from '../../hooks'
 import './DiscountBanner.css'
 
 export default function DiscountBanner() {
-  const {theme} = useThemeContext()
-  const {userData, isLogged} = useUserContext()
+  const {theme} = useThemeActions()
+  const { userData, isLogged} = useAuthActions()
 
   return (
     <div className={`discount-banner__container ${theme}`}>

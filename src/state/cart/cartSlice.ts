@@ -1,36 +1,35 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { CartItemProps, ProductProps } from "../../types";
-// import { setItem } from "../../hooks/useLocalStorage";
+import { getItemFromLocalStorage } from "../../utils/localStorageUtils";
 
-interface CartState {
-    cart: CartItemProps[];
-}
+export type cartState = CartItemProps[];
 
+const initialState: cartState = (() => {
+        const persistedState = getItemFromLocalStorage("userCart")
+        return persistedState ? persistedState : [];
+    })()
 
-const initialState: CartState = {
-    cart: []
-}
-
+    
 const cartSlice = createSlice({
     name: "cart",
     initialState,
     reducers: {
         addItem: (state, action: PayloadAction<ProductProps>) => {
-            const productInCartIndex = state.cart.findIndex(
+            const productInCartIndex = state.findIndex(
                 (item) => item.product.id === action.payload.id
             );
 
             if (productInCartIndex >= 0) {
-                state.cart[productInCartIndex].quantity += 1;
+                state[productInCartIndex].quantity += 1;
             } else {
-                state.cart.push({
+                state.push({
                     product: action.payload,
                     quantity: 1,
                 })
             }
         },
         emptyCart: (state) => {
-            state.cart = [];
+            state.length = 0;  
         }
     }
 });

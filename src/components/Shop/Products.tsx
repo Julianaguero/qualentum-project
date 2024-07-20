@@ -2,8 +2,8 @@ import "./Products.css";
 import ProductCard from "./ProductCard";
 import { type ListOfProducts, type ProductProps } from "../../types";
 import ProductNotFound from "./ProductNotFound";
-import useAuthContext from "../../hooks/useAuthContext";
 import CreateProductButton from "../Buttons/CreateProductButton";
+import { useAuthActions } from "../../hooks";
 
 interface Props {
   products: ListOfProducts;
@@ -11,7 +11,7 @@ interface Props {
 
 
 const Products : React.FC<Props> = ({products}) => {
-  const { userData }  = useAuthContext()
+  const { userData }  = useAuthActions()
 
   if(products.length === 0) return <ProductNotFound />
 

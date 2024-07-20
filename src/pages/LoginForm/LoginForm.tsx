@@ -1,19 +1,20 @@
 import "./LoginForm.css"; 
 import { userInputs } from "../../utils/constants";
-import useAuthContext from "../../hooks/useAuthContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import CustomButton from "../../components/Buttons/CustomButton";
 import FormInput from "../../components/Login/FormInput";
-import { useThemeContext } from "../../hooks";
+import { useAuthActions, useThemeActions } from "../../hooks";
 
 
 
 const LoginForm  = (): JSX.Element => {
-  const { theme } = useThemeContext()
+  const { theme } = useThemeActions()
   const navigate = useNavigate();
   const location = useLocation();
 
-  const {userData, isLogged, handleChange, handleLogin, handleLogout} = useAuthContext()
+  const {userData, inputValue, isLogged, handleChange, handleLogin, handleLogout} = useAuthActions()
+
+
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     handleLogin(event);
@@ -43,7 +44,7 @@ const LoginForm  = (): JSX.Element => {
           {userInputs.map((input) => (
             <FormInput
               key={input.id}
-              value={userData[input.name]}
+              value={inputValue[input.name]}
               handleChange={handleChange}
               {...input}
             />

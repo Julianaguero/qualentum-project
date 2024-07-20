@@ -1,4 +1,4 @@
-import { useThemeContext} from "../../hooks/";
+import { useCartActions, useThemeActions } from "../../hooks/";
 
 import { LuShoppingCart, LuHeart, LuUser2 } from "react-icons/lu";
 import { RiContrast2Fill, RiContrast2Line } from "react-icons/ri";
@@ -6,14 +6,11 @@ import { RiContrast2Fill, RiContrast2Line } from "react-icons/ri";
 import "./UserNavbar.css";
 import { sumItems } from "../../utils/shopUtils";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { type RootState } from "../../state/store";
 
 
 export default function UserNavbar() {
-  const { theme, toggleTheme } = useThemeContext();
-  // const { cart } = useCartContext();
-  const cart = useSelector((state: RootState) => state.cart.cart)
+  const { theme, toggleTheme } = useThemeActions();
+  const { cart } = useCartActions();
 
   return (
     <nav className="header__nav">
