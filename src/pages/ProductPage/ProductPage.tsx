@@ -10,10 +10,10 @@ import "./ProductPage.css";
 const ProductPage = () => {
   const { theme } = useThemeActions();
   const { addItemToCart } = useCartActions();
-  const { filteredProducts, isLoading } = useProducts();
+  const { products, isLoading } = useProducts();
 
   const params = useParams<{ productId: string }>();
-  const product = filteredProducts.find((item) => item.id === params.productId);
+  const product = products.find((item) => item.id === params.productId);
 
  
 
