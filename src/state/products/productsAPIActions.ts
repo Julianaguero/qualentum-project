@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { createProducts, deleteProducts, getProducts, handleErrors, updateProducts } from "../../api/productsAPI";
+import { createProducts, deleteProducts, getProducts, getProductsById, handleErrors, updateProducts } from "../../api/productsAPI";
 import {  ProductProps } from "../../types";
 
 
@@ -12,6 +12,22 @@ export const getProductsThunk = createAsyncThunk(
                 throw new Error("No products found");
             }
             return products;
+        } catch (error) {
+            handleErrors(error);
+            throw error;
+        }
+    }
+)
+
+export const getProductsByIdThunk = createAsyncThunk(
+    "products/getProductsById",
+    async (productId: string) => {
+        try {
+            const product = await getProductsById(productId);
+            if (!product) {
+                throw new Error("No products found");
+            }
+            return product;
         } catch (error) {
             handleErrors(error);
             throw error;

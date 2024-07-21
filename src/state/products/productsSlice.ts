@@ -1,12 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ProductProps, type ListOfProducts } from "../../types";
-import { createProductsThunk, deleteProductsThunk, getProductsThunk, updateProductsThunk } from "./productsAPIActions";
+import { createProductsThunk, deleteProductsThunk, getProductsByIdThunk, getProductsThunk, updateProductsThunk } from "./productsAPIActions";
 
 export type ProductsState = {
     products: ListOfProducts,
     isLoading: boolean,
     isError: boolean | null,
     searchTerm: string,
+    selectedProduct: ProductProps | null,
 }
 
 const initialState : ProductsState = {
@@ -14,6 +15,7 @@ const initialState : ProductsState = {
     isLoading: false,
     isError: null,
     searchTerm: "",
+    selectedProduct: null,
 };
 
 const productsSlice = createSlice({
@@ -23,12 +25,22 @@ const productsSlice = createSlice({
         setSearchTerm: (state, action : PayloadAction<string>) => {
             state.searchTerm = action.payload;
         },
+        setSelectedProduct: (state, action: PayloadAction<ProductProps>) => {
+            state.selectedProduct = action.payload;
+        },
+        removeSelectedProduct: (state) => {
+            state.selectedProduct = null;
+        }
     },
     extraReducers: (builder) => {
         builder
             .addCase(getProductsThunk.fulfilled, (state, action : PayloadAction<ListOfProducts>) => {
                 state.isLoading = false;
                 state.products = action.payload;
+            })
+            .addCase(getProductsByIdThunk.fulfilled, (state, action : PayloadAction<ProductProps>) => {
+                state.isLoading = false;
+                state.selectedProduct = action.payload;
             })
             .addCase(createProductsThunk.fulfilled, (state, action : PayloadAction<ProductProps | undefined>) => {
                 state.isLoading = false;
@@ -69,6 +81,6 @@ const productsSlice = createSlice({
     }
 })
 
-export const  {setSearchTerm} = productsSlice.actions;
+export const  {setSearchTerm, setSelectedProduct, removeSelectedProduct} = productsSlice.actions;
 
 export default productsSlice.reducer;

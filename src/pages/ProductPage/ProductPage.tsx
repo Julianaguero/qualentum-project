@@ -6,16 +6,26 @@ import { useCartActions, useThemeActions } from "../../hooks";
 import useProducts from "../../hooks/useProducts";
 import { priceToLocaleString } from "../../utils/shopUtils";
 import "./ProductPage.css";
+import { useEffect } from "react";
 
 const ProductPage = () => {
   const { theme } = useThemeActions();
   const { addItemToCart } = useCartActions();
-  const { products, isLoading } = useProducts();
+  const { selectedProduct, isLoading, getProductsById, resetSelectedProduct } = useProducts();
 
-  const params = useParams<{ productId: string }>();
-  const product = products.find((item) => item.id === params.productId);
+  const { productId } = useParams<{ productId: string }>();
+  const product = selectedProduct;
 
- 
+  useEffect(() => {
+    if (productId) {
+      getProductsById(productId)
+    }
+    return () => {
+      resetSelectedProduct()
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [productId])
+  
 
   if (isLoading)
     <CustomMessagePage

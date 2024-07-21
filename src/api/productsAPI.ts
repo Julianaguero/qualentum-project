@@ -35,6 +35,20 @@ export const getProducts = async (): Promise<ListOfProducts> => {
     }
 };
 
+export const getProductsById = async (productId : string): Promise<ProductProps | undefined >=> {
+    try {
+        const response: Response = await fetch(`${BASE_URL}/products/${productId}`);
+        if (!response.ok)
+            handleResponseErrors(response, "Error al obtener los productos");
+        const data : ProductProps  = await response.json() ;
+        return data ;
+
+    } catch (error) {
+        handleErrors(error);
+        return undefined;
+    }
+};
+
 export const createProducts = async (newProduct: ProductProps): Promise<ProductProps | null> => {
     try {
         const response = await fetch(`${BASE_URL}/products`, {
