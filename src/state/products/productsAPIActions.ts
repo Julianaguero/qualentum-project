@@ -1,11 +1,16 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { createProducts, deleteProducts, getProducts, getProductsById, handleErrors, updateProducts } from "../../api/productsAPI";
-import {  ProductProps } from "../../types";
+import { createProducts, deleteProducts, getProducts, getProductsById, updateProducts } from "../../api/productsAPI";
+import {  ListOfProducts, ProductProps } from "../../types";
 
+type RejectValue = string;
 
-export const getProductsThunk = createAsyncThunk(
+type AsyncThunkConfig = {
+    rejectValue: RejectValue;
+};
+
+export const getProductsThunk = createAsyncThunk<ListOfProducts, void, AsyncThunkConfig>(
     "products/getProducts",
-    async () => {
+    async (_, thunkAPI) => {
         try {
             const products = await getProducts();
             if (!products || products.length === 0) {
@@ -13,15 +18,17 @@ export const getProductsThunk = createAsyncThunk(
             }
             return products;
         } catch (error) {
-            handleErrors(error);
-            throw error;
+            if (error instanceof Error) {
+                return thunkAPI.rejectWithValue(error.message)
+             } 
+             return thunkAPI.rejectWithValue("Unknown error occurred");
         }
     }
 )
 
 export const getProductsByIdThunk = createAsyncThunk(
     "products/getProductsById",
-    async (productId: string) => {
+    async (productId: string, thunkAPI) => {
         try {
             const product = await getProductsById(productId);
             if (!product) {
@@ -29,15 +36,17 @@ export const getProductsByIdThunk = createAsyncThunk(
             }
             return product;
         } catch (error) {
-            handleErrors(error);
-            throw error;
+            if (error instanceof Error) {
+                return thunkAPI.rejectWithValue(error.message)
+             } 
+             return thunkAPI.rejectWithValue("Unknown error occurred");
         }
     }
 )
 
 export const createProductsThunk = createAsyncThunk(
     "products/createProducts",
-    async (productToCreate: ProductProps) => {
+    async (productToCreate: ProductProps, thunkAPI) => {
         try {
             const newProduct = await createProducts(productToCreate)
             if(!newProduct) {
@@ -45,14 +54,17 @@ export const createProductsThunk = createAsyncThunk(
             }
             return newProduct
         } catch (error) {
-            handleErrors(error)
+            if (error instanceof Error) {
+                return thunkAPI.rejectWithValue(error.message)
+             } 
+             return thunkAPI.rejectWithValue("Unknown error occurred");
         }
     }
 )
 
 export const updateProductsThunk = createAsyncThunk(
     "products/updateProducts",
-    async (productToUpdate : ProductProps) => {
+    async (productToUpdate : ProductProps, thunkAPI) => {
         try {
             const updateProduct = await updateProducts(productToUpdate);
             if(!updateProduct) {
@@ -60,14 +72,17 @@ export const updateProductsThunk = createAsyncThunk(
             }
             return updateProduct
         } catch (error) {
-            handleErrors(error)
+            if (error instanceof Error) {
+                return thunkAPI.rejectWithValue(error.message)
+             } 
+             return thunkAPI.rejectWithValue("Unknown error occurred");
         }
     }
 )
 
 export const deleteProductsThunk = createAsyncThunk(
     "products/deleteProducts",
-    async (productId: string) => {
+    async (productId: string, thunkAPI) => {
         try {
             const deletedProduct = await deleteProducts(productId)
             if(!deleteProducts) {
@@ -75,7 +90,10 @@ export const deleteProductsThunk = createAsyncThunk(
             }
             return deletedProduct
         } catch (error) {
-            handleErrors(error)
+            if (error instanceof Error) {
+                return thunkAPI.rejectWithValue(error.message)
+             } 
+             return thunkAPI.rejectWithValue("Unknown error occurred");
         }
     }
 )

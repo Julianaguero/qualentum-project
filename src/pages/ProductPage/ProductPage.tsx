@@ -1,6 +1,5 @@
 import { Link, useParams } from "react-router-dom";
 import CustomButton from "../../components/Buttons/CustomButton";
-import ProductNotFound from "../../components/Shop/ProductNotFound";
 import CustomMessagePage from "../ErrorPage/CustomMessagePage";
 import { useCartActions, useThemeActions } from "../../hooks";
 import useProducts from "../../hooks/useProducts";
@@ -11,32 +10,42 @@ import { useEffect } from "react";
 const ProductPage = () => {
   const { theme } = useThemeActions();
   const { addItemToCart } = useCartActions();
-  const { selectedProduct, isLoading, getProductsById, resetSelectedProduct } = useProducts();
+  const {
+    selectedProduct,
+    isLoading,
+    isError,
+    errorMessage,
+    getProductsById,
+    resetSelectedProduct,
+  } = useProducts();
 
   const { productId } = useParams<{ productId: string }>();
   const product = selectedProduct;
 
   useEffect(() => {
     if (productId) {
-      getProductsById(productId)
+      getProductsById(productId);
     }
     return () => {
-      resetSelectedProduct()
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [productId])
-  
+      resetSelectedProduct();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [productId]);
 
   if (isLoading)
-    <CustomMessagePage
+    return <CustomMessagePage
       title="Cargando..."
       textInfo="No desesperes... ya casi estamos 😪"
     />;
-  if (!product && undefined) <ProductNotFound />;
+  if (isError && errorMessage)
+    return <CustomMessagePage
+      title={errorMessage}
+      textInfo="El producto no se encuentra disponible"
+    />;
 
   return (
     <main className={`product-page ${theme}`}>
-      {product ? (
+      {product && (
         <article className="product-page__container">
           <div className="product-page__image-wrapper">
             <img
@@ -69,8 +78,6 @@ const ProductPage = () => {
             </div>
           </div>
         </article>
-      ) : (
-        <div className="product-page__not-found">Product not found</div>
       )}
     </main>
   );

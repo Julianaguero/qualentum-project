@@ -6,6 +6,7 @@ export type ProductsState = {
     products: ListOfProducts,
     isLoading: boolean,
     isError: boolean | null,
+    errorMessage: string | null,
     searchTerm: string,
     selectedProduct: ProductProps | null,
 }
@@ -14,6 +15,7 @@ const initialState : ProductsState = {
     products: [],
     isLoading: false,
     isError: null,
+    errorMessage: null,
     searchTerm: "",
     selectedProduct: null,
 };
@@ -34,9 +36,9 @@ const productsSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(getProductsThunk.fulfilled, (state, action : PayloadAction<ListOfProducts>) => {
+            .addCase(getProductsThunk.fulfilled, (state, action : PayloadAction<ListOfProducts | undefined>) => {
                 state.isLoading = false;
-                state.products = action.payload;
+                state.products = action.payload || [];
             })
             .addCase(getProductsByIdThunk.fulfilled, (state, action : PayloadAction<ProductProps>) => {
                 state.isLoading = false;
@@ -73,9 +75,12 @@ const productsSlice = createSlice({
             )  
             .addMatcher(
                 (action) => action.type.endsWith("/rejected"),
-                (state) => {
+                (state, action: PayloadAction<string>) => {
+                    console.log(action.payload, "payload.message")
+                    console.log(state.isError)
                     state.isLoading = false;
                     state.isError = true;
+                    state.errorMessage = action.payload as string || "An error occurred";
                 }
             )
     }

@@ -1,4 +1,5 @@
 // import { useRouteError } from "react-router-dom";
+import { useThemeActions } from "../../hooks";
 import "./CustomMessagePage.css"
 
 interface Props {
@@ -7,11 +8,10 @@ interface Props {
 }
 
 const CustomMessagePage : React.FC<Props> = ({title, textInfo}): JSX.Element => {
-  // const error = useRouteError();
-  // console.log(error)
+  const {theme} = useThemeActions()
 
   return (
-    <div id="custom-message-page">
+    <div id="custom-message-page" className={theme}>
       <h2>{title ? title : "Page Not Found"}</h2>
       <p>{textInfo ? textInfo : "Sorry an unexpected error has ocurred."}</p>
     </div>

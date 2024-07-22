@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from "./store";
 
 const useProducts = () => {
   const dispatch = useAppDispatch();
-  const {products, isLoading, isError, selectedProduct} = useAppSelector(state => state.products);
+  const {products, isLoading, isError, errorMessage, selectedProduct} = useAppSelector(state => state.products);
 
   const getProducts = () => {
     dispatch(getProductsThunk())
@@ -31,7 +31,7 @@ const useProducts = () => {
     dispatch(removeSelectedProduct())
   }
   
-  return { products, isLoading, isError, getProducts, getProductsById, createProducts, updateProducts, deleteProducts, selectedProduct, resetSelectedProduct  } as const
+  return { products, isLoading, isError, errorMessage, getProducts, getProductsById, createProducts, updateProducts, deleteProducts, selectedProduct, resetSelectedProduct  } as const
 };
 
 export default useProducts;

@@ -3,12 +3,20 @@ import { ListOfProducts, ProductProps } from "../types";
 const BASE_URL = "http://localhost:3000";
 
 
-export const handleErrors = (error: unknown) => {
+export const handleErrorsMessages = (error: unknown):string => {
+    // if (error instanceof Error) {
+    //     console.error("Error:", error.message);
+    // } else {
+    //     console.error("Error desconocido:", error);
+    // }
     if (error instanceof Error) {
-        console.error("Error:", error.message);
-    } else {
-        console.error("Error desconocido:", error);
+        // Verifica si el mensaje del error es 'Failed to fetch' o cualquier otro mensaje de error relacionado con problemas de red
+        if (error.message === 'Failed to fetch') {
+            return "Problema de conexión con el servidor";
+        }
+        return error.message;
     }
+    return "Unknown error occurred";
 };
 
 const handleResponseErrors = (response: Response, customtext: string) => {
@@ -30,8 +38,9 @@ export const getProducts = async (): Promise<ListOfProducts> => {
         return data ;
 
     } catch (error) {
-        handleErrors(error);
-        return [];
+        // Aquí captura errores relacionados con la red o el fetch
+        const errorMessage = handleErrorsMessages(error);
+        throw new Error(errorMessage); 
     }
 };
 
@@ -44,8 +53,9 @@ export const getProductsById = async (productId : string): Promise<ProductProps 
         return data ;
 
     } catch (error) {
-        handleErrors(error);
-        return undefined;
+       // Aquí captura errores relacionados con la red o el fetch
+       const errorMessage = handleErrorsMessages(error);
+       throw new Error(errorMessage); 
     }
 };
 
@@ -66,8 +76,9 @@ export const createProducts = async (newProduct: ProductProps): Promise<ProductP
         return data
 
     } catch (error) {
-        handleErrors(error);
-        return null;
+      // Aquí captura errores relacionados con la red o el fetch
+        const errorMessage = handleErrorsMessages(error);
+        throw new Error(errorMessage); 
     }
 };
 
@@ -93,8 +104,9 @@ export const updateProducts = async (productToUpdate: ProductProps): Promise<Pro
         );
         return data
     } catch (error) {
-        handleErrors(error);
-        return null;
+      // Aquí captura errores relacionados con la red o el fetch
+        const errorMessage = handleErrorsMessages(error);
+        throw new Error(errorMessage); 
     } 
     
 };
@@ -111,6 +123,8 @@ export const deleteProducts = async (productId: string) => {
         alert(`El producto ID: "${data.id}" fue eliminado correctamente de la base de datos.`);
         return data
     } catch (error) {
-        handleErrors(error);
+         // Aquí captura errores relacionados con la red o el fetch
+         const errorMessage = handleErrorsMessages(error);
+         throw new Error(errorMessage); 
     } 
 };
