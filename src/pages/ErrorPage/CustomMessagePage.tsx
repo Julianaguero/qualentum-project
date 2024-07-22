@@ -1,4 +1,3 @@
-// import { useRouteError } from "react-router-dom";
 import { useThemeActions } from "../../hooks";
 import "./CustomMessagePage.css"
 

@@ -14,11 +14,11 @@ function App() {
   }, [])
 
   return (
-    <>
+    <div className="layout">
       <Header />
       <Outlet />
       <Footer />
-    </>
+    </div>
   );
 }
 
