@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 // import ProductsContextProvider from "./context/unusedContext/ProductsContext.tsx";
 import { RouterProvider } from "react-router-dom";
-import { router } from "./routes/index.tsx";
+import { router } from "./otronombre/index.tsx";
 import { Provider } from "react-redux";
 import { store } from "./state/store.ts";
 
