@@ -1,4 +1,4 @@
-import { setSearchTerm } from "../state/products/productsSlice";
+import { setSearchTerm } from "../store/products/productsSlice";
 import { filterProducts } from "../utils/shopUtils";
 import { useAppDispatch, useAppSelector } from "./store";
 import useProducts from "./useProducts";

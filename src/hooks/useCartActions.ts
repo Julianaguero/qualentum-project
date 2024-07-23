@@ -1,4 +1,4 @@
-import { addItem, emptyCart } from "../state/cart/cartSlice";
+import { addItem, emptyCart } from "../store/cart/cartSlice";
 import { ProductProps } from "../types";
 import { useAppDispatch, useAppSelector } from "./store";
 

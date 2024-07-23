@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { UserDataProps } from "../types";
 import { useAppDispatch, useAppSelector } from "./store";
-import { userLogin, userLogout } from "../state/auth/authSlice";
+import { userLogin, userLogout } from "../store/auth/authSlice";
 
 
 

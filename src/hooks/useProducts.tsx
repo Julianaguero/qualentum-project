@@ -1,5 +1,5 @@
-import { createProductsThunk, deleteProductsThunk, getProductsByIdThunk, getProductsThunk, updateProductsThunk } from "../state/products/productsAPIActions";
-import { removeSelectedProduct } from "../state/products/productsSlice";
+import { createProductsThunk, deleteProductsThunk, getProductsByIdThunk, getProductsThunk, updateProductsThunk } from "../store/products/productsAPIActions";
+import { removeSelectedProduct } from "../store/products/productsSlice";
 import { type ProductProps } from "../types";
 import { useAppDispatch, useAppSelector } from "./store";
 

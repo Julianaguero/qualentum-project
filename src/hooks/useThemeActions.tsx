@@ -1,4 +1,4 @@
-import { setTheme } from "../state/theme/themeSlice";
+import { setTheme } from "../store/theme/themeSlice";
 import { useAppDispatch, useAppSelector } from "./store"
 
 
