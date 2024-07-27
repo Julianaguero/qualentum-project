@@ -6,6 +6,7 @@ import { type ProductProps } from "../../types";
 import "./ProductForm.css";
 import FormTextarea from "../Login/FormTextarea";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { productValidationRules } from "../../utils/FormValidationRules";
 
 type FormProductProps = ProductProps;
 
@@ -35,7 +36,7 @@ const ProductForm: React.FC<Props> = ({
     },
   };
 
-  const {register, watch, handleSubmit, setError, clearErrors, formState: { errors }} = useForm({
+  const {register, trigger, handleSubmit, formState: { errors }} = useForm({
     defaultValues: initialProductState
   })
 
@@ -45,35 +46,7 @@ const ProductForm: React.FC<Props> = ({
   };
 
   const handleProductValidation = (field: keyof FormProductProps) => {
-    if(errors[field]){ 
-      clearErrors(field)
-    }
-
-    const valueToWatch = watch(field);
-
-    if((field === "title" || field === "category") && typeof valueToWatch === "string" && (valueToWatch.length < 4 || valueToWatch.length > 40) ) {
-      setError(field, {
-        message: `${field === "title" ? "El nombre" : "La categoría"} del producto debe contener entre 4 y 40 caracteres.`
-      })
-    }
-
-    if(field === "description"&& typeof valueToWatch === "string" && (valueToWatch.length < 4 || valueToWatch.length > 500) ) {
-      setError(field, {
-        message: "La descrip  ción del producto debe contener entre 4 y 500 caracteres."
-      })
-    }
-
-    if(field === "price" && typeof valueToWatch === "number" && valueToWatch < 1) {
-      setError("price", {
-        message: "El precio del producto no puede ser 0 ó menor a 0."
-      })
-    }
-    
-    if(field === "image"  && typeof valueToWatch === "string" && !valueToWatch.includes("http://")) {
-      setError(field, {
-        message:  "Debe ingresar una url válida."
-      })
-    }
+    trigger(field)
   }
 
   return (
@@ -94,17 +67,7 @@ const ProductForm: React.FC<Props> = ({
             className="update-product__input"
             label="Title:"
             id="form__update-title"
-            {...register("title", {
-              required: "Debe ingresar un nombre de producto.",
-              minLength: {
-                value: 4,
-                message: "El nombre del producto debe contener entre 4 y 40 caracteres."
-              },
-              maxLength: {
-                value: 40,
-                message: "El nombre del producto debe contener entre 4 y 40 caracteres."
-              }
-            })}
+            {...register("title", productValidationRules.title)}
             autoFocus
             onBlur={() => handleProductValidation("title")}
             errorMessage={errors.title?.message}
@@ -114,17 +77,7 @@ const ProductForm: React.FC<Props> = ({
             label="Price:"
             id="form__update-price"
             type="number"
-            {...register("price", {
-              required: "Debe ingresar el precio de producto.",
-              min: {
-                value: 1,
-                message: "El precio del producto no puede ser 0 ó menor a 0."
-              },
-              max: {
-                value: 100000,
-                message: "El precio del producto no puede ser mayor a 100.000."
-              },
-            })}
+            {...register("price", productValidationRules.price)}
             onBlur={() => handleProductValidation("price")}
             errorMessage={errors.price?.message}
           />
@@ -132,17 +85,7 @@ const ProductForm: React.FC<Props> = ({
             className="update-product__input"
             label="Categoria:"
             id="form__update-category"
-            {...register("category", {
-              required: "Debe ingresar una o mas categorías de producto.",
-              minLength: {
-                value: 4,
-                message: "Debe ingresar un mínimo de 4 y un máximo 40 caracteres."
-              },
-              maxLength: {
-                value: 40,
-                message: "Debe ingresar un mínimo de 4 y un máximo 40 caracteres."
-              }
-            })}
+            {...register("category", productValidationRules.category)}
             onBlur={() => handleProductValidation("category")}
             errorMessage={errors.category?.message}
           />
@@ -152,17 +95,7 @@ const ProductForm: React.FC<Props> = ({
             className="update-product__textarea"
             label="Descripcion:"
             id="form__description"
-            {...register("description", {
-              required: "Debe ingresar una descripción del producto.",
-              minLength: {
-                value: 4,
-                message: "Debe ingresar un mínimo de 4 y un máximo 500 caracteres."
-              },
-              maxLength: {
-                value: 500,
-                message: "Debe ingresar un mínimo de 4 y un máximo 500 caracteres."
-              }
-            })}
+            {...register("description", productValidationRules.description)}
             onBlur={() => handleProductValidation("description")}
             errorMessage={errors.description?.message}
           />
@@ -170,10 +103,7 @@ const ProductForm: React.FC<Props> = ({
             className="update-product__input"
             label="Imagen:"
             id="form__update-image"
-            {...register("image", {
-              required: "Debe ingresar url válida para la imagen del producto.",
-              validate: (value) => value.includes("http://") || "Debe ingresar una url válida."
-            })}
+            {...register("image", productValidationRules.image)}
             onBlur={() => handleProductValidation("image")}
             errorMessage={errors.image?.message}
           />

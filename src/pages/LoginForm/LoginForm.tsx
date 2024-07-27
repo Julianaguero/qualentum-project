@@ -4,8 +4,9 @@ import CustomButton from "../../components/Buttons/CustomButton";
 import FormInput from "../../components/Login/FormInput";
 import { useAuthActions, useThemeActions } from "../../hooks";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { userValidationRules } from "../../utils/FormValidationRules";
 
-interface FormUserProps {
+export interface FormUserProps {
   userName: string;
   mail: string;
   password: string;
@@ -19,11 +20,9 @@ const LoginForm = (): JSX.Element => {
   const {
     register,
     handleSubmit,
-    setError,
-    clearErrors,
+    trigger,
     formState: { errors, isSubmitting },
     getValues,
-    watch
   } = useForm<FormUserProps>();
 
   const { userData, isLogged, handleLogin, handleLogout } = useAuthActions();
@@ -39,45 +38,8 @@ const LoginForm = (): JSX.Element => {
   };
 
   const handleErrors = (field: keyof FormUserProps) => {
-      if(errors[field])  {
-        clearErrors(field);
-      }
-
-      const valueToWatch = watch(field)
-      const password = getValues("password");
-      const confirmPassword = getValues("confirmPassword");
-
-      if (field  === "userName" && ( valueToWatch.length < 4 || valueToWatch.length > 8)) {
-        return setError(field, {
-          message: "El nombre de usario debe contener entre 4 y 8 caracteres."
-        })
-      }
-      if(field === "mail" && !valueToWatch.includes("@")) {
-        return setError(field, {
-          message: "Debe ingresar un mail válido."
-        })
-      }     
-      if(field === "password" && valueToWatch.length < 6) {
-        return setError(field, {
-          message: "La contraseña debe contener al menos 6 caracteres."
-        })
-      } 
-      if(field === "password" && valueToWatch.length < 6) {
-        return setError(field, {
-          message: "La contraseña debe contener al menos 6 caracteres."
-        })
-      }  
-      if (field === "confirmPassword") {
-        if (confirmPassword !== password) {
-          setError("confirmPassword", {
-            type: "mismatch",
-            message: "Las contraseñas deben coincidir."
-          });
-        } else {
-          clearErrors("confirmPassword");
-        }
-      }
-    };
+    trigger(field)
+  };
 
   return (
     <section id="login-form" className={theme}>
@@ -98,17 +60,7 @@ const LoginForm = (): JSX.Element => {
             label="Nombre"
             type="text"
             placeholder="Ingrese su nombre..."
-            {...register("userName", {
-              required: "Debe ingresar un nombre de usuario",
-              minLength: {
-                value: 4,
-                message: "El nombre de usario debe contener entre 4 y 8 caracteres."
-              },
-              maxLength: {
-                value: 8,
-                message: "El nombre de usario debe contener entre 4 y 8 caracteres."
-              }
-            })}
+            {...register("userName", userValidationRules.userName)}
             onBlur={() => handleErrors("userName")}
             autoFocus
             errorMessage={errors.userName?.message}
@@ -118,16 +70,10 @@ const LoginForm = (): JSX.Element => {
             label="Email"
             type="text"
             placeholder="Ingrese su email..."
-            {...register("mail", {
-              required: "Es necesario ingresar un email.",
-              validate: (value) => value.includes("@") || "Debes ingresar un email valido.",
-              minLength: {
-                value: 3,
-                message: "Debe tener al menos 3 caracteres."
-              },
-            })}
+            {...register("mail", userValidationRules.mail)}
             onBlur={() => handleErrors("mail")}
             errorMessage={errors.mail?.message}
+            autoComplete="off"
           />
 
           <FormInput
@@ -135,13 +81,8 @@ const LoginForm = (): JSX.Element => {
             label="Contraseña"
             type="password"
             placeholder="Ingrese su contraseña..."
-            {...register("password", {
-              required: "Debe ingresar una contraseña.",
-              minLength: {
-                value: 4,
-                message: "La contraseña debe tener al menos 6 caracteres."
-              }
-            })}
+            {...register("password", userValidationRules.password)}
+            autoComplete="new-password"
             onBlur={() => handleErrors("password")}
             errorMessage={errors.password?.message}
           />
@@ -155,6 +96,7 @@ const LoginForm = (): JSX.Element => {
               required: "Debe repetir la contraseña.",
               validate: (value) => value === getValues("password") || "Las contraseñas ingresadas no coinciden."
             })}
+            autoComplete="off"
             onBlur={() => handleErrors("confirmPassword")}
             errorMessage={errors.confirmPassword?.message}
           />

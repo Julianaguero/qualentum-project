@@ -2,27 +2,14 @@
 import { UserDataProps } from "../types";
 import { useAppDispatch, useAppSelector } from "./store";
 import { userLogin, userLogout } from "../store/auth/authSlice";
-import { FormUserProps } from "../pages/LoginForm/LoginForm";
+import { type FormUserProps } from "../pages/LoginForm/LoginForm";
 
 const useAuthActions = () => {
   const { userData, isLogged, authChecked } = useAppSelector(
     (state) => state.auth
   );
-  // const [inputValue, setinputValue] = useState<UserDataProps>({
-  //   username: "",
-  //   email: "",
-  //   password: "",
-  //   role: "notAsigned",
-  // });
-  const dispatch = useAppDispatch();
 
-  // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   const { name, value } = event.target;
-  //   setinputValue((prevState) => ({
-  //     ...prevState,
-  //     [name]: value,
-  //   }));
-  // };
+  const dispatch = useAppDispatch();
 
   const handleLogin = (data: FormUserProps) => {
     const userData: Omit<UserDataProps, "role"> = {
@@ -44,10 +31,8 @@ const useAuthActions = () => {
 
   return {
     userData,
-    // inputValue,
     isLogged,
     authChecked,
-    // handleChange,
     handleLogin,
     handleLogout,
   };
