@@ -20,10 +20,9 @@
     border: 1px solid gray;
 }
 
-.form-input span {
+.form-input__error {
     color: var(--text-warning-color);
     padding: 0.2rem;
-    display: none;
 }
 
 .form-input__input:invalid[data-focused="true"] {

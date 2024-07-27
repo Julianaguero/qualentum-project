@@ -35,6 +35,23 @@ export const navLinks = [
       required: true,
 
     },
+    {
+      id: "form__user-password",
+      label: "Contraseña",
+      name: "password",
+      type: "password",
+      placeholder: "Ingrese su contraseña...",
+
+    },
+    {
+      id: "form__user-confirmPassword",
+      label: "Repite la contraseña",
+      name: "confirmPassword",
+      type: "password",
+      placeholder: "Repita su contraseña...",
+      errorMessage: "It should be a valid email address!",
+      required: true,
+    }
   ] as const;
 
   

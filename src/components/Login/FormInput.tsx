@@ -1,13 +1,13 @@
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 import "./FormInput.css"
 
 interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
   errorMessage?: string,
-  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const FormInput: React.FC<FormInputProps> = ({
+const FormInput = forwardRef<HTMLInputElement, FormInputProps>(({
   id,
   name,
   label,
@@ -15,14 +15,16 @@ const FormInput: React.FC<FormInputProps> = ({
   errorMessage,
   handleChange,
   ...props
-}) => {
-    const [focused, setFocused] = useState(false);
-    const handleFocus = () => {
-        setFocused(false)
-    }
-    const handleblur = () => {
-        setFocused(true)
-    }
+}, ref) => {
+  const [focused, setFocused] = useState(false);
+
+  const handleFocus = () => {
+    setFocused(false);
+  };
+
+  const handleBlur = () => {
+    setFocused(true);
+  };
 
   return (
     <div className="form-input">
@@ -31,19 +33,19 @@ const FormInput: React.FC<FormInputProps> = ({
       </label>
       <input
         className="form-input__input"
-        type="text"
         id={id}
         name={name}
         value={value}
         onChange={handleChange}
         onFocus={handleFocus}
-        onBlur={handleblur}
+        onBlur={handleBlur}
         data-focused={focused.toString()}
+        ref={ref}  // Agregar ref aquí
         {...props}
       />
-      <span>{errorMessage}</span>
+      {errorMessage && <span className="form-input__error">{errorMessage}</span>}
     </div>
   );
-};
+});
 
 export default FormInput;

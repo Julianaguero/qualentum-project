@@ -21,6 +21,7 @@ export type ThemeProps = "dark" | "light"
 export interface UserDataProps {
   username: string,
   email: string,
+  password: string,
   role: "admin" | "user" | "notAsigned"
 }
 

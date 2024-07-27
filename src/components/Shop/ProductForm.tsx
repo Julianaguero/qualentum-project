@@ -1,4 +1,3 @@
-import { useState } from "react";
 import FormInput from "../Login/FormInput";
 import CustomButton from "../Buttons/CustomButton";
 import { v4 as uuidv4 } from "uuid";
@@ -6,6 +5,9 @@ import { type ProductProps } from "../../types";
 
 import "./ProductForm.css";
 import FormTextarea from "../Login/FormTextarea";
+import { SubmitHandler, useForm } from "react-hook-form";
+
+type FormProductProps = ProductProps;
 
 interface Props {
   product?: ProductProps;
@@ -33,38 +35,50 @@ const ProductForm: React.FC<Props> = ({
     },
   };
 
-  const [productToUpdate, setProductToUpdate] =
-    useState<ProductProps>(initialProductState);
+  const {register, watch, handleSubmit, setError, clearErrors, formState: { errors }} = useForm({
+    defaultValues: initialProductState
+  })
 
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = event.target;
-    setProductToUpdate((prevProduct) => ({
-      ...prevProduct,
-      [name]:
-        name === "price" ? (value === "" ? "" : parseFloat(value)) : value,
-    }));
-  };
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (
-      typeof productToUpdate.price === "string" ||
-      isNaN(productToUpdate.price)
-    ) {
-      alert(
-        "El campo de precio no puede estar vacío y debe ser un número válido."
-      );
-      return;
-    }
-    CRUDAction(productToUpdate);
+  const onSubmit : SubmitHandler<FormProductProps> = (data) => {
+    CRUDAction(data);
     handleModal(false);
   };
 
+  const handleProductValidation = (field: keyof FormProductProps) => {
+    if(errors[field]){ 
+      clearErrors(field)
+    }
+
+    const valueToWatch = watch(field);
+
+    if((field === "title" || field === "category") && typeof valueToWatch === "string" && (valueToWatch.length < 4 || valueToWatch.length > 40) ) {
+      setError(field, {
+        message: `${field === "title" ? "El nombre" : "La categoría"} del producto debe contener entre 4 y 40 caracteres.`
+      })
+    }
+
+    if(field === "description"&& typeof valueToWatch === "string" && (valueToWatch.length < 4 || valueToWatch.length > 500) ) {
+      setError(field, {
+        message: "La descrip  ción del producto debe contener entre 4 y 500 caracteres."
+      })
+    }
+
+    if(field === "price" && typeof valueToWatch === "number" && valueToWatch < 1) {
+      setError("price", {
+        message: "El precio del producto no puede ser 0 ó menor a 0."
+      })
+    }
+    
+    if(field === "image"  && typeof valueToWatch === "string" && !valueToWatch.includes("http://")) {
+      setError(field, {
+        message:  "Debe ingresar una url válida."
+      })
+    }
+  }
+
   return (
     <>
-      <form onSubmit={handleSubmit} className="update-product__form">
+      <form onSubmit={handleSubmit(onSubmit)} className="update-product__form">
         <h2>
           {actionType === "create" ? "Crear Producto" : "Editar producto"}:
         </h2>
@@ -73,35 +87,64 @@ const ProductForm: React.FC<Props> = ({
             className="update-product__input"
             label="Id:"
             id="form__update-id"
-            name="id"
-            value={productToUpdate.id}
-            handleChange={handleChange}
             disabled
+            {...register("id")}
           />
           <FormInput
             className="update-product__input"
             label="Title:"
             id="form__update-title"
-            name="title"
-            value={productToUpdate.title}
-            handleChange={handleChange}
+            {...register("title", {
+              required: "Debe ingresar un nombre de producto.",
+              minLength: {
+                value: 4,
+                message: "El nombre del producto debe contener entre 4 y 40 caracteres."
+              },
+              maxLength: {
+                value: 40,
+                message: "El nombre del producto debe contener entre 4 y 40 caracteres."
+              }
+            })}
+            autoFocus
+            onBlur={() => handleProductValidation("title")}
+            errorMessage={errors.title?.message}
           />
           <FormInput
             className="update-product__input"
             label="Price:"
             id="form__update-price"
             type="number"
-            name="price"
-            value={productToUpdate.price}
-            handleChange={handleChange}
+            {...register("price", {
+              required: "Debe ingresar el precio de producto.",
+              min: {
+                value: 1,
+                message: "El precio del producto no puede ser 0 ó menor a 0."
+              },
+              max: {
+                value: 100000,
+                message: "El precio del producto no puede ser mayor a 100.000."
+              },
+            })}
+            onBlur={() => handleProductValidation("price")}
+            errorMessage={errors.price?.message}
           />
           <FormInput
             className="update-product__input"
             label="Categoria:"
             id="form__update-category"
-            name="category"
-            value={productToUpdate.category}
-            handleChange={handleChange}
+            {...register("category", {
+              required: "Debe ingresar una o mas categorías de producto.",
+              minLength: {
+                value: 4,
+                message: "Debe ingresar un mínimo de 4 y un máximo 40 caracteres."
+              },
+              maxLength: {
+                value: 40,
+                message: "Debe ingresar un mínimo de 4 y un máximo 40 caracteres."
+              }
+            })}
+            onBlur={() => handleProductValidation("category")}
+            errorMessage={errors.category?.message}
           />
         </div>
         <div className="update-product__wrapper">
@@ -109,17 +152,30 @@ const ProductForm: React.FC<Props> = ({
             className="update-product__textarea"
             label="Descripcion:"
             id="form__description"
-            name="description"
-            value={productToUpdate.description}
-            handleChange={handleChange}
+            {...register("description", {
+              required: "Debe ingresar una descripción del producto.",
+              minLength: {
+                value: 4,
+                message: "Debe ingresar un mínimo de 4 y un máximo 500 caracteres."
+              },
+              maxLength: {
+                value: 500,
+                message: "Debe ingresar un mínimo de 4 y un máximo 500 caracteres."
+              }
+            })}
+            onBlur={() => handleProductValidation("description")}
+            errorMessage={errors.description?.message}
           />
           <FormInput
             className="update-product__input"
             label="Imagen:"
             id="form__update-image"
-            name="image"
-            value={productToUpdate.image}
-            handleChange={handleChange}
+            {...register("image", {
+              required: "Debe ingresar url válida para la imagen del producto.",
+              validate: (value) => value.includes("http://") || "Debe ingresar una url válida."
+            })}
+            onBlur={() => handleProductValidation("image")}
+            errorMessage={errors.image?.message}
           />
         </div>
         <CustomButton

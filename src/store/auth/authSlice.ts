@@ -11,6 +11,7 @@ interface AuthState {
 const defaultUser: UserDataProps = {
     username: "",
     email: "",
+    password: "",
     role: "notAsigned"
 }
 

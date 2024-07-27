@@ -1,13 +1,13 @@
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 import "./FormInput.css";
 
 interface FormTextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   label: string;
   errorMessage?: string;
-  handleChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  handleChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
-const FormTextarea: React.FC<FormTextareaProps> = ({
+const FormTextarea = forwardRef<HTMLTextAreaElement, FormTextareaProps>(({
   id,
   name,
   label,
@@ -15,7 +15,7 @@ const FormTextarea: React.FC<FormTextareaProps> = ({
   errorMessage,
   handleChange,
   ...props
-}) => {
+}, ref) => {
   const [focused, setFocused] = useState(false);
 
   const handleFocus = () => {
@@ -40,11 +40,12 @@ const FormTextarea: React.FC<FormTextareaProps> = ({
         onFocus={handleFocus}
         onBlur={handleBlur}
         data-focused={focused.toString()}
+        ref={ref}
         {...props}
       />
-      <span>{errorMessage}</span>
+      <span className="form-input__error">{errorMessage}</span>
     </div>
   );
-};
+});
 
 export default FormTextarea;
